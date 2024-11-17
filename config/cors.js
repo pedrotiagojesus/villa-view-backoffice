@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const corsOptions = {
-    origin: process.env.API_URL,
+    origin: ["http://localhost:5173", process.env.API_URL],
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
 };
