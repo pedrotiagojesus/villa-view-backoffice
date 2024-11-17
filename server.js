@@ -1,5 +1,9 @@
 import express from "express";
 
+// cors
+import cors from "cors";
+import corsOptions from "./config/cors.js";
+
 // routes
 import countyRoutes from "./routes/county.js";
 import districtRoutes from "./routes/district.js";
@@ -12,6 +16,8 @@ import propertyRoutes from "./routes/property.js";
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(cors(corsOptions));
 
 // routes
 app.use("/county", countyRoutes);
