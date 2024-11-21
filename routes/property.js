@@ -9,10 +9,10 @@ import {
 
 const router = express.Router();
 
-router.get("/:id", getProperty);
 router.get("/highlight/", listPropertyHighlight);
 router.get("/new/", listPropertyNew);
 router.get("/search/", listPropertySearch);
+router.get("/:id", getProperty);
 router.post("/", createProperty);
 
 export default router;
