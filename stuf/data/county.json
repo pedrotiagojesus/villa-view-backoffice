@@ -1,0 +1,1392 @@
+[
+    {
+        "county_id": 101,
+        "name": "Águeda",
+        "district_id": 1
+    },
+    {
+        "county_id": 102,
+        "name": "Albergaria-a-Velha",
+        "district_id": 1
+    },
+    {
+        "county_id": 103,
+        "name": "Anadia",
+        "district_id": 1
+    },
+    {
+        "county_id": 104,
+        "name": "Arouca",
+        "district_id": 1
+    },
+    {
+        "county_id": 105,
+        "name": "Aveiro",
+        "district_id": 1
+    },
+    {
+        "county_id": 106,
+        "name": "Castelo de Paiva",
+        "district_id": 1
+    },
+    {
+        "county_id": 107,
+        "name": "Espinho",
+        "district_id": 1
+    },
+    {
+        "county_id": 108,
+        "name": "Estarreja",
+        "district_id": 1
+    },
+    {
+        "county_id": 110,
+        "name": "Ílhavo",
+        "district_id": 1
+    },
+    {
+        "county_id": 111,
+        "name": "Mealhada",
+        "district_id": 1
+    },
+    {
+        "county_id": 112,
+        "name": "Murtosa",
+        "district_id": 1
+    },
+    {
+        "county_id": 113,
+        "name": "Oliveira de Azeméis",
+        "district_id": 1
+    },
+    {
+        "county_id": 114,
+        "name": "Oliveira do Bairro",
+        "district_id": 1
+    },
+    {
+        "county_id": 115,
+        "name": "Ovar",
+        "district_id": 1
+    },
+    {
+        "county_id": 109,
+        "name": "Santa Maria da Feira",
+        "district_id": 1
+    },
+    {
+        "county_id": 116,
+        "name": "São João da Madeira",
+        "district_id": 1
+    },
+    {
+        "county_id": 117,
+        "name": "Sever do Vouga",
+        "district_id": 1
+    },
+    {
+        "county_id": 118,
+        "name": "Vagos",
+        "district_id": 1
+    },
+    {
+        "county_id": 119,
+        "name": "Vale de Cambra",
+        "district_id": 1
+    },
+    {
+        "county_id": 201,
+        "name": "Aljustrel",
+        "district_id": 2
+    },
+    {
+        "county_id": 202,
+        "name": "Almodôvar",
+        "district_id": 2
+    },
+    {
+        "county_id": 203,
+        "name": "Alvito",
+        "district_id": 2
+    },
+    {
+        "county_id": 204,
+        "name": "Barrancos",
+        "district_id": 2
+    },
+    {
+        "county_id": 205,
+        "name": "Beja",
+        "district_id": 2
+    },
+    {
+        "county_id": 206,
+        "name": "Castro Verde",
+        "district_id": 2
+    },
+    {
+        "county_id": 207,
+        "name": "Cuba",
+        "district_id": 2
+    },
+    {
+        "county_id": 208,
+        "name": "Ferreira do Alentejo",
+        "district_id": 2
+    },
+    {
+        "county_id": 209,
+        "name": "Mértola",
+        "district_id": 2
+    },
+    {
+        "county_id": 210,
+        "name": "Moura",
+        "district_id": 2
+    },
+    {
+        "county_id": 211,
+        "name": "Odemira",
+        "district_id": 2
+    },
+    {
+        "county_id": 212,
+        "name": "Ourique",
+        "district_id": 2
+    },
+    {
+        "county_id": 213,
+        "name": "Serpa",
+        "district_id": 2
+    },
+    {
+        "county_id": 214,
+        "name": "Vidigueira",
+        "district_id": 2
+    },
+    {
+        "county_id": 301,
+        "name": "Amares",
+        "district_id": 3
+    },
+    {
+        "county_id": 302,
+        "name": "Barcelos",
+        "district_id": 3
+    },
+    {
+        "county_id": 303,
+        "name": "Braga",
+        "district_id": 3
+    },
+    {
+        "county_id": 304,
+        "name": "Cabeceiras de Basto",
+        "district_id": 3
+    },
+    {
+        "county_id": 305,
+        "name": "Celorico de Basto",
+        "district_id": 3
+    },
+    {
+        "county_id": 306,
+        "name": "Esposende",
+        "district_id": 3
+    },
+    {
+        "county_id": 307,
+        "name": "Fafe",
+        "district_id": 3
+    },
+    {
+        "county_id": 308,
+        "name": "Guimarães",
+        "district_id": 3
+    },
+    {
+        "county_id": 309,
+        "name": "Póvoa de Lanhoso",
+        "district_id": 3
+    },
+    {
+        "county_id": 310,
+        "name": "Terras de Bouro",
+        "district_id": 3
+    },
+    {
+        "county_id": 311,
+        "name": "Vieira do Minho",
+        "district_id": 3
+    },
+    {
+        "county_id": 312,
+        "name": "Vila Nova de Famalicão",
+        "district_id": 3
+    },
+    {
+        "county_id": 313,
+        "name": "Vila Verde",
+        "district_id": 3
+    },
+    {
+        "county_id": 314,
+        "name": "Vizela",
+        "district_id": 3
+    },
+    {
+        "county_id": 401,
+        "name": "Alfândega da Fé",
+        "district_id": 4
+    },
+    {
+        "county_id": 402,
+        "name": "Bragança",
+        "district_id": 4
+    },
+    {
+        "county_id": 403,
+        "name": "Carrazeda de Ansiães",
+        "district_id": 4
+    },
+    {
+        "county_id": 404,
+        "name": "Freixo de Espada à Cinta",
+        "district_id": 4
+    },
+    {
+        "county_id": 405,
+        "name": "Macedo de Cavaleiros",
+        "district_id": 4
+    },
+    {
+        "county_id": 406,
+        "name": "Miranda do Douro",
+        "district_id": 4
+    },
+    {
+        "county_id": 407,
+        "name": "Mirandela",
+        "district_id": 4
+    },
+    {
+        "county_id": 408,
+        "name": "Mogadouro",
+        "district_id": 4
+    },
+    {
+        "county_id": 409,
+        "name": "Torre de Moncorvo",
+        "district_id": 4
+    },
+    {
+        "county_id": 410,
+        "name": "Vila Flor",
+        "district_id": 4
+    },
+    {
+        "county_id": 411,
+        "name": "Vimioso",
+        "district_id": 4
+    },
+    {
+        "county_id": 412,
+        "name": "Vinhais",
+        "district_id": 4
+    },
+    {
+        "county_id": 501,
+        "name": "Belmonte",
+        "district_id": 5
+    },
+    {
+        "county_id": 502,
+        "name": "Castelo Branco",
+        "district_id": 5
+    },
+    {
+        "county_id": 503,
+        "name": "Covilhã",
+        "district_id": 5
+    },
+    {
+        "county_id": 504,
+        "name": "Fundão",
+        "district_id": 5
+    },
+    {
+        "county_id": 505,
+        "name": "Idanha-a-Nova",
+        "district_id": 5
+    },
+    {
+        "county_id": 506,
+        "name": "Oleiros",
+        "district_id": 5
+    },
+    {
+        "county_id": 507,
+        "name": "Penamacor",
+        "district_id": 5
+    },
+    {
+        "county_id": 508,
+        "name": "Proença-a-Nova",
+        "district_id": 5
+    },
+    {
+        "county_id": 509,
+        "name": "Sertã",
+        "district_id": 5
+    },
+    {
+        "county_id": 510,
+        "name": "Vila de Rei",
+        "district_id": 5
+    },
+    {
+        "county_id": 511,
+        "name": "Vila Velha de Ródão",
+        "district_id": 5
+    },
+    {
+        "county_id": 601,
+        "name": "Arganil",
+        "district_id": 6
+    },
+    {
+        "county_id": 602,
+        "name": "Cantanhede",
+        "district_id": 6
+    },
+    {
+        "county_id": 603,
+        "name": "Coimbra",
+        "district_id": 6
+    },
+    {
+        "county_id": 604,
+        "name": "Condeixa-a-Nova",
+        "district_id": 6
+    },
+    {
+        "county_id": 605,
+        "name": "Figueira da Foz",
+        "district_id": 6
+    },
+    {
+        "county_id": 606,
+        "name": "Góis",
+        "district_id": 6
+    },
+    {
+        "county_id": 607,
+        "name": "Lousã",
+        "district_id": 6
+    },
+    {
+        "county_id": 608,
+        "name": "Mira",
+        "district_id": 6
+    },
+    {
+        "county_id": 609,
+        "name": "Miranda do Corvo",
+        "district_id": 6
+    },
+    {
+        "county_id": 610,
+        "name": "Montemor-o-Velho",
+        "district_id": 6
+    },
+    {
+        "county_id": 611,
+        "name": "Oliveira do Hospital",
+        "district_id": 6
+    },
+    {
+        "county_id": 612,
+        "name": "Pampilhosa da Serra",
+        "district_id": 6
+    },
+    {
+        "county_id": 613,
+        "name": "Penacova",
+        "district_id": 6
+    },
+    {
+        "county_id": 614,
+        "name": "Penela",
+        "district_id": 6
+    },
+    {
+        "county_id": 615,
+        "name": "Soure",
+        "district_id": 6
+    },
+    {
+        "county_id": 616,
+        "name": "Tábua",
+        "district_id": 6
+    },
+    {
+        "county_id": 617,
+        "name": "Vila Nova de Poiares",
+        "district_id": 6
+    },
+    {
+        "county_id": 701,
+        "name": "Alandroal",
+        "district_id": 7
+    },
+    {
+        "county_id": 702,
+        "name": "Arraiolos",
+        "district_id": 7
+    },
+    {
+        "county_id": 703,
+        "name": "Borba",
+        "district_id": 7
+    },
+    {
+        "county_id": 704,
+        "name": "Estremoz",
+        "district_id": 7
+    },
+    {
+        "county_id": 705,
+        "name": "Évora",
+        "district_id": 7
+    },
+    {
+        "county_id": 706,
+        "name": "Montemor-o-Novo",
+        "district_id": 7
+    },
+    {
+        "county_id": 707,
+        "name": "Mora",
+        "district_id": 7
+    },
+    {
+        "county_id": 708,
+        "name": "Mourão",
+        "district_id": 7
+    },
+    {
+        "county_id": 709,
+        "name": "Portel",
+        "district_id": 7
+    },
+    {
+        "county_id": 710,
+        "name": "Redondo",
+        "district_id": 7
+    },
+    {
+        "county_id": 711,
+        "name": "Reguengos de Monsaraz",
+        "district_id": 7
+    },
+    {
+        "county_id": 712,
+        "name": "Vendas Novas",
+        "district_id": 7
+    },
+    {
+        "county_id": 713,
+        "name": "Viana do Alentejo",
+        "district_id": 7
+    },
+    {
+        "county_id": 714,
+        "name": "Vila Viçosa",
+        "district_id": 7
+    },
+    {
+        "county_id": 801,
+        "name": "Albufeira",
+        "district_id": 8
+    },
+    {
+        "county_id": 802,
+        "name": "Alcoutim",
+        "district_id": 8
+    },
+    {
+        "county_id": 803,
+        "name": "Aljezur",
+        "district_id": 8
+    },
+    {
+        "county_id": 804,
+        "name": "Castro Marim",
+        "district_id": 8
+    },
+    {
+        "county_id": 805,
+        "name": "Faro",
+        "district_id": 8
+    },
+    {
+        "county_id": 806,
+        "name": "Lagoa",
+        "district_id": 8
+    },
+    {
+        "county_id": 807,
+        "name": "Lagos",
+        "district_id": 8
+    },
+    {
+        "county_id": 808,
+        "name": "Loulé",
+        "district_id": 8
+    },
+    {
+        "county_id": 809,
+        "name": "Monchique",
+        "district_id": 8
+    },
+    {
+        "county_id": 810,
+        "name": "Olhão",
+        "district_id": 8
+    },
+    {
+        "county_id": 811,
+        "name": "Portimão",
+        "district_id": 8
+    },
+    {
+        "county_id": 812,
+        "name": "São Brás de Alportel",
+        "district_id": 8
+    },
+    {
+        "county_id": 813,
+        "name": "Silves",
+        "district_id": 8
+    },
+    {
+        "county_id": 814,
+        "name": "Tavira",
+        "district_id": 8
+    },
+    {
+        "county_id": 815,
+        "name": "Vila do Bispo",
+        "district_id": 8
+    },
+    {
+        "county_id": 816,
+        "name": "Vila Real de Santo António",
+        "district_id": 8
+    },
+    {
+        "county_id": 901,
+        "name": "Aguiar da Beira",
+        "district_id": 9
+    },
+    {
+        "county_id": 902,
+        "name": "Almeida",
+        "district_id": 9
+    },
+    {
+        "county_id": 903,
+        "name": "Celorico da Beira",
+        "district_id": 9
+    },
+    {
+        "county_id": 904,
+        "name": "Figueira de Castelo Rodrigo",
+        "district_id": 9
+    },
+    {
+        "county_id": 905,
+        "name": "Fornos de Algodres",
+        "district_id": 9
+    },
+    {
+        "county_id": 906,
+        "name": "Gouveia",
+        "district_id": 9
+    },
+    {
+        "county_id": 907,
+        "name": "Guarda",
+        "district_id": 9
+    },
+    {
+        "county_id": 908,
+        "name": "Manteigas",
+        "district_id": 9
+    },
+    {
+        "county_id": 909,
+        "name": "Mêda",
+        "district_id": 9
+    },
+    {
+        "county_id": 910,
+        "name": "Pinhel",
+        "district_id": 9
+    },
+    {
+        "county_id": 911,
+        "name": "Sabugal",
+        "district_id": 9
+    },
+    {
+        "county_id": 912,
+        "name": "Seia",
+        "district_id": 9
+    },
+    {
+        "county_id": 913,
+        "name": "Trancoso",
+        "district_id": 9
+    },
+    {
+        "county_id": 914,
+        "name": "Vila Nova de Foz Côa",
+        "district_id": 9
+    },
+    {
+        "county_id": 1001,
+        "name": "Alcobaça",
+        "district_id": 10
+    },
+    {
+        "county_id": 1002,
+        "name": "Alvaiázere",
+        "district_id": 10
+    },
+    {
+        "county_id": 1003,
+        "name": "Ansião",
+        "district_id": 10
+    },
+    {
+        "county_id": 1004,
+        "name": "Batalha",
+        "district_id": 10
+    },
+    {
+        "county_id": 1005,
+        "name": "Bombarral",
+        "district_id": 10
+    },
+    {
+        "county_id": 1006,
+        "name": "Caldas da Rainha",
+        "district_id": 10
+    },
+    {
+        "county_id": 1007,
+        "name": "Castanheira de Pêra",
+        "district_id": 10
+    },
+    {
+        "county_id": 1008,
+        "name": "Figueiró dos Vinhos",
+        "district_id": 10
+    },
+    {
+        "county_id": 1009,
+        "name": "Leiria",
+        "district_id": 10
+    },
+    {
+        "county_id": 1010,
+        "name": "Marinha Grande",
+        "district_id": 10
+    },
+    {
+        "county_id": 1011,
+        "name": "Nazaré",
+        "district_id": 10
+    },
+    {
+        "county_id": 1012,
+        "name": "Óbidos",
+        "district_id": 10
+    },
+    {
+        "county_id": 1013,
+        "name": "Pedrógão Grande",
+        "district_id": 10
+    },
+    {
+        "county_id": 1014,
+        "name": "Peniche",
+        "district_id": 10
+    },
+    {
+        "county_id": 1015,
+        "name": "Pombal",
+        "district_id": 10
+    },
+    {
+        "county_id": 1016,
+        "name": "Porto de Mós",
+        "district_id": 10
+    },
+    {
+        "county_id": 1101,
+        "name": "Alenquer",
+        "district_id": 11
+    },
+    {
+        "county_id": 1115,
+        "name": "Amadora",
+        "district_id": 11
+    },
+    {
+        "county_id": 1102,
+        "name": "Arruda dos Vinhos",
+        "district_id": 11
+    },
+    {
+        "county_id": 1103,
+        "name": "Azambuja",
+        "district_id": 11
+    },
+    {
+        "county_id": 1104,
+        "name": "Cadaval",
+        "district_id": 11
+    },
+    {
+        "county_id": 1105,
+        "name": "Cascais",
+        "district_id": 11
+    },
+    {
+        "county_id": 1106,
+        "name": "Lisboa",
+        "district_id": 11
+    },
+    {
+        "county_id": 1107,
+        "name": "Loures",
+        "district_id": 11
+    },
+    {
+        "county_id": 1108,
+        "name": "Lourinhã",
+        "district_id": 11
+    },
+    {
+        "county_id": 1109,
+        "name": "Mafra",
+        "district_id": 11
+    },
+    {
+        "county_id": 1116,
+        "name": "Odivelas",
+        "district_id": 11
+    },
+    {
+        "county_id": 1110,
+        "name": "Oeiras",
+        "district_id": 11
+    },
+    {
+        "county_id": 1111,
+        "name": "Sintra",
+        "district_id": 11
+    },
+    {
+        "county_id": 1112,
+        "name": "Sobral de Monte Agraço",
+        "district_id": 11
+    },
+    {
+        "county_id": 1113,
+        "name": "Torres Vedras",
+        "district_id": 11
+    },
+    {
+        "county_id": 1114,
+        "name": "Vila Franca de Xira",
+        "district_id": 11
+    },
+    {
+        "county_id": 1201,
+        "name": "Alter do Chão",
+        "district_id": 12
+    },
+    {
+        "county_id": 1202,
+        "name": "Arronches",
+        "district_id": 12
+    },
+    {
+        "county_id": 1203,
+        "name": "Avis",
+        "district_id": 12
+    },
+    {
+        "county_id": 1204,
+        "name": "Campo Maior",
+        "district_id": 12
+    },
+    {
+        "county_id": 1205,
+        "name": "Castelo de Vide",
+        "district_id": 12
+    },
+    {
+        "county_id": 1206,
+        "name": "Crato",
+        "district_id": 12
+    },
+    {
+        "county_id": 1207,
+        "name": "Elvas",
+        "district_id": 12
+    },
+    {
+        "county_id": 1208,
+        "name": "Fronteira",
+        "district_id": 12
+    },
+    {
+        "county_id": 1209,
+        "name": "Gavião",
+        "district_id": 12
+    },
+    {
+        "county_id": 1210,
+        "name": "Marvão",
+        "district_id": 12
+    },
+    {
+        "county_id": 1211,
+        "name": "Monforte",
+        "district_id": 12
+    },
+    {
+        "county_id": 1212,
+        "name": "Nisa",
+        "district_id": 12
+    },
+    {
+        "county_id": 1213,
+        "name": "Ponte de Sor",
+        "district_id": 12
+    },
+    {
+        "county_id": 1214,
+        "name": "Portalegre",
+        "district_id": 12
+    },
+    {
+        "county_id": 1215,
+        "name": "Sousel",
+        "district_id": 12
+    },
+    {
+        "county_id": 1301,
+        "name": "Amarante",
+        "district_id": 13
+    },
+    {
+        "county_id": 1302,
+        "name": "Baião",
+        "district_id": 13
+    },
+    {
+        "county_id": 1303,
+        "name": "Felgueiras",
+        "district_id": 13
+    },
+    {
+        "county_id": 1304,
+        "name": "Gondomar",
+        "district_id": 13
+    },
+    {
+        "county_id": 1305,
+        "name": "Lousada",
+        "district_id": 13
+    },
+    {
+        "county_id": 1306,
+        "name": "Maia",
+        "district_id": 13
+    },
+    {
+        "county_id": 1307,
+        "name": "Marco de Canaveses",
+        "district_id": 13
+    },
+    {
+        "county_id": 1308,
+        "name": "Matosinhos",
+        "district_id": 13
+    },
+    {
+        "county_id": 1309,
+        "name": "Paços de Ferreira",
+        "district_id": 13
+    },
+    {
+        "county_id": 1310,
+        "name": "Paredes",
+        "district_id": 13
+    },
+    {
+        "county_id": 1311,
+        "name": "Penafiel",
+        "district_id": 13
+    },
+    {
+        "county_id": 1312,
+        "name": "Porto",
+        "district_id": 13
+    },
+    {
+        "county_id": 1313,
+        "name": "Póvoa de Varzim",
+        "district_id": 13
+    },
+    {
+        "county_id": 1314,
+        "name": "Santo Tirso",
+        "district_id": 13
+    },
+    {
+        "county_id": 1318,
+        "name": "Trofa",
+        "district_id": 13
+    },
+    {
+        "county_id": 1315,
+        "name": "Valongo",
+        "district_id": 13
+    },
+    {
+        "county_id": 1316,
+        "name": "Vila do Conde",
+        "district_id": 13
+    },
+    {
+        "county_id": 1317,
+        "name": "Vila Nova de Gaia",
+        "district_id": 13
+    },
+    {
+        "county_id": 1401,
+        "name": "Abrantes",
+        "district_id": 14
+    },
+    {
+        "county_id": 1402,
+        "name": "Alcanena",
+        "district_id": 14
+    },
+    {
+        "county_id": 1403,
+        "name": "Almeirim",
+        "district_id": 14
+    },
+    {
+        "county_id": 1404,
+        "name": "Alpiarça",
+        "district_id": 14
+    },
+    {
+        "county_id": 1405,
+        "name": "Benavente",
+        "district_id": 14
+    },
+    {
+        "county_id": 1406,
+        "name": "Cartaxo",
+        "district_id": 14
+    },
+    {
+        "county_id": 1407,
+        "name": "Chamusca",
+        "district_id": 14
+    },
+    {
+        "county_id": 1408,
+        "name": "Constância",
+        "district_id": 14
+    },
+    {
+        "county_id": 1409,
+        "name": "Coruche",
+        "district_id": 14
+    },
+    {
+        "county_id": 1410,
+        "name": "Entroncamento",
+        "district_id": 14
+    },
+    {
+        "county_id": 1411,
+        "name": "Ferreira do Zêzere",
+        "district_id": 14
+    },
+    {
+        "county_id": 1412,
+        "name": "Golegã",
+        "district_id": 14
+    },
+    {
+        "county_id": 1413,
+        "name": "Mação",
+        "district_id": 14
+    },
+    {
+        "county_id": 1421,
+        "name": "Ourém",
+        "district_id": 14
+    },
+    {
+        "county_id": 1414,
+        "name": "Rio Maior",
+        "district_id": 14
+    },
+    {
+        "county_id": 1415,
+        "name": "Salvaterra de Magos",
+        "district_id": 14
+    },
+    {
+        "county_id": 1416,
+        "name": "Santarém",
+        "district_id": 14
+    },
+    {
+        "county_id": 1417,
+        "name": "Sardoal",
+        "district_id": 14
+    },
+    {
+        "county_id": 1418,
+        "name": "Tomar",
+        "district_id": 14
+    },
+    {
+        "county_id": 1419,
+        "name": "Torres Novas",
+        "district_id": 14
+    },
+    {
+        "county_id": 1420,
+        "name": "Vila Nova da Barquinha",
+        "district_id": 14
+    },
+    {
+        "county_id": 1501,
+        "name": "Alcácer do Sal",
+        "district_id": 15
+    },
+    {
+        "county_id": 1502,
+        "name": "Alcochete",
+        "district_id": 15
+    },
+    {
+        "county_id": 1503,
+        "name": "Almada",
+        "district_id": 15
+    },
+    {
+        "county_id": 1504,
+        "name": "Barreiro",
+        "district_id": 15
+    },
+    {
+        "county_id": 1505,
+        "name": "Grândola",
+        "district_id": 15
+    },
+    {
+        "county_id": 1506,
+        "name": "Moita",
+        "district_id": 15
+    },
+    {
+        "county_id": 1507,
+        "name": "Montijo",
+        "district_id": 15
+    },
+    {
+        "county_id": 1508,
+        "name": "Palmela",
+        "district_id": 15
+    },
+    {
+        "county_id": 1509,
+        "name": "Santiago do Cacém",
+        "district_id": 15
+    },
+    {
+        "county_id": 1510,
+        "name": "Seixal",
+        "district_id": 15
+    },
+    {
+        "county_id": 1511,
+        "name": "Sesimbra",
+        "district_id": 15
+    },
+    {
+        "county_id": 1512,
+        "name": "Setúbal",
+        "district_id": 15
+    },
+    {
+        "county_id": 1513,
+        "name": "Sines",
+        "district_id": 15
+    },
+    {
+        "county_id": 1601,
+        "name": "Arcos de Valdevez",
+        "district_id": 16
+    },
+    {
+        "county_id": 1602,
+        "name": "Caminha",
+        "district_id": 16
+    },
+    {
+        "county_id": 1603,
+        "name": "Melgaço",
+        "district_id": 16
+    },
+    {
+        "county_id": 1604,
+        "name": "Monção",
+        "district_id": 16
+    },
+    {
+        "county_id": 1605,
+        "name": "Paredes de Coura",
+        "district_id": 16
+    },
+    {
+        "county_id": 1606,
+        "name": "Ponte da Barca",
+        "district_id": 16
+    },
+    {
+        "county_id": 1607,
+        "name": "Ponte de Lima",
+        "district_id": 16
+    },
+    {
+        "county_id": 1608,
+        "name": "Valença",
+        "district_id": 16
+    },
+    {
+        "county_id": 1609,
+        "name": "Viana do Castelo",
+        "district_id": 16
+    },
+    {
+        "county_id": 1610,
+        "name": "Vila Nova de Cerveira",
+        "district_id": 16
+    },
+    {
+        "county_id": 1701,
+        "name": "Alijó",
+        "district_id": 17
+    },
+    {
+        "county_id": 1702,
+        "name": "Boticas",
+        "district_id": 17
+    },
+    {
+        "county_id": 1703,
+        "name": "Chaves",
+        "district_id": 17
+    },
+    {
+        "county_id": 1704,
+        "name": "Mesão Frio",
+        "district_id": 17
+    },
+    {
+        "county_id": 1705,
+        "name": "Mondim de Basto",
+        "district_id": 17
+    },
+    {
+        "county_id": 1706,
+        "name": "Montalegre",
+        "district_id": 17
+    },
+    {
+        "county_id": 1707,
+        "name": "Murça",
+        "district_id": 17
+    },
+    {
+        "county_id": 1708,
+        "name": "Peso da Régua",
+        "district_id": 17
+    },
+    {
+        "county_id": 1709,
+        "name": "Ribeira de Pena",
+        "district_id": 17
+    },
+    {
+        "county_id": 1710,
+        "name": "Sabrosa",
+        "district_id": 17
+    },
+    {
+        "county_id": 1711,
+        "name": "Santa Marta de Penaguião",
+        "district_id": 17
+    },
+    {
+        "county_id": 1712,
+        "name": "Valpaços",
+        "district_id": 17
+    },
+    {
+        "county_id": 1713,
+        "name": "Vila Pouca de Aguiar",
+        "district_id": 17
+    },
+    {
+        "county_id": 1714,
+        "name": "Vila Real",
+        "district_id": 17
+    },
+    {
+        "county_id": 1801,
+        "name": "Armamar",
+        "district_id": 18
+    },
+    {
+        "county_id": 1802,
+        "name": "Carregal do Sal",
+        "district_id": 18
+    },
+    {
+        "county_id": 1803,
+        "name": "Castro Daire",
+        "district_id": 18
+    },
+    {
+        "county_id": 1804,
+        "name": "Cinfães",
+        "district_id": 18
+    },
+    {
+        "county_id": 1805,
+        "name": "Lamego",
+        "district_id": 18
+    },
+    {
+        "county_id": 1806,
+        "name": "Mangualde",
+        "district_id": 18
+    },
+    {
+        "county_id": 1807,
+        "name": "Moimenta da Beira",
+        "district_id": 18
+    },
+    {
+        "county_id": 1808,
+        "name": "Mortágua",
+        "district_id": 18
+    },
+    {
+        "county_id": 1809,
+        "name": "Nelas",
+        "district_id": 18
+    },
+    {
+        "county_id": 1810,
+        "name": "Oliveira de Frades",
+        "district_id": 18
+    },
+    {
+        "county_id": 1811,
+        "name": "Penalva do Castelo",
+        "district_id": 18
+    },
+    {
+        "county_id": 1812,
+        "name": "Penedono",
+        "district_id": 18
+    },
+    {
+        "county_id": 1813,
+        "name": "Resende",
+        "district_id": 18
+    },
+    {
+        "county_id": 1814,
+        "name": "Santa Comba Dão",
+        "district_id": 18
+    },
+    {
+        "county_id": 1815,
+        "name": "São João da Pesqueira",
+        "district_id": 18
+    },
+    {
+        "county_id": 1816,
+        "name": "São Pedro do Sul",
+        "district_id": 18
+    },
+    {
+        "county_id": 1817,
+        "name": "Sátão",
+        "district_id": 18
+    },
+    {
+        "county_id": 1818,
+        "name": "Sernancelhe",
+        "district_id": 18
+    },
+    {
+        "county_id": 1819,
+        "name": "Tabuaço",
+        "district_id": 18
+    },
+    {
+        "county_id": 1820,
+        "name": "Tarouca",
+        "district_id": 18
+    },
+    {
+        "county_id": 1821,
+        "name": "Tondela",
+        "district_id": 18
+    },
+    {
+        "county_id": 1822,
+        "name": "Vila Nova de Paiva",
+        "district_id": 18
+    },
+    {
+        "county_id": 1823,
+        "name": "Viseu",
+        "district_id": 18
+    },
+    {
+        "county_id": 1824,
+        "name": "Vouzela",
+        "district_id": 18
+    }
+]

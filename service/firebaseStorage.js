@@ -19,3 +19,25 @@ export const getUrl = async (filePath) => {
         throw error;
     }
 };
+
+export const getMultipleUrl = async (filePathArr) => {
+    const urlArr = [];
+
+    if (!Array.isArray(filePathArr)) {
+        return urlArr;
+    }
+
+    if (filePathArr.length === 0) {
+        return urlArr;
+    }
+
+    await Promise.all(
+        filePathArr.map(async (filePath) => {
+            urlArr.push(await getUrl(filePath));
+        })
+    );
+
+    urlArr.sort((a, b) => a.localeCompare(b));
+
+    return urlArr;
+};

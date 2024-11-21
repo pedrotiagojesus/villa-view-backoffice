@@ -1,0 +1,38 @@
+[
+    {
+        "property_type_id": 1,
+        "name": "Apartamentos"
+    },
+    {
+        "property_type_id": 2,
+        "name": "Escritórios"
+    },
+    {
+        "property_type_id": 3,
+        "name": "Imóveis com negócio"
+    },
+    {
+        "property_type_id": 4,
+        "name": "Lojas"
+    },
+    {
+        "property_type_id": 5,
+        "name": "Moradias"
+    },
+    {
+        "property_type_id": 6,
+        "name": "Prédios"
+    },
+    {
+        "property_type_id": 7,
+        "name": "Quartos"
+    },
+    {
+        "property_type_id": 8,
+        "name": "Quintas e herdades"
+    },
+    {
+        "property_type_id": 9,
+        "name": "Terrenos"
+    }
+]

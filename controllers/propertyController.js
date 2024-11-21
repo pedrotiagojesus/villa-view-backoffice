@@ -1,8 +1,10 @@
 import PropertyModel from "../models/propertyModel.js";
 
-export const listProperty = async (req, res) => {
+export const getProperty = async (req, res) => {
     try {
-        const property = await PropertyModel.getAll();
+        const propertyId = req.params.id;
+
+        const property = await PropertyModel.get(propertyId);
         res.status(200).json(property);
     } catch (error) {
         res.status(500).json({ error: error.message });

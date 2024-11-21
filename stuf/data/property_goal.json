@@ -1,0 +1,14 @@
+[
+    {
+        "property_goal_id": 1,
+        "name": "Comprar"
+    },
+    {
+        "property_goal_id": 2,
+        "name": "Arrendar"
+    },
+    {
+        "property_goal_id": 3,
+        "name": "Trespasse"
+    }
+]

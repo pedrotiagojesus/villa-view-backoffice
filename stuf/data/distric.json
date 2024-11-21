@@ -1,0 +1,74 @@
+[
+    {
+        "district_id": 1,
+        "name": "Aveiro"
+    },
+    {
+        "district_id": 2,
+        "name": "Beja"
+    },
+    {
+        "district_id": 3,
+        "name": "Braga"
+    },
+    {
+        "district_id": 4,
+        "name": "Bragança"
+    },
+    {
+        "district_id": 5,
+        "name": "Castelo Branco"
+    },
+    {
+        "district_id": 6,
+        "name": "Coimbra"
+    },
+    {
+        "district_id": 7,
+        "name": "Évora"
+    },
+    {
+        "district_id": 8,
+        "name": "Faro"
+    },
+    {
+        "district_id": 9,
+        "name": "Guarda"
+    },
+    {
+        "district_id": 10,
+        "name": "Leiria"
+    },
+    {
+        "district_id": 11,
+        "name": "Lisboa"
+    },
+    {
+        "district_id": 12,
+        "name": "Portalegre"
+    },
+    {
+        "district_id": 13,
+        "name": "Porto"
+    },
+    {
+        "district_id": 14,
+        "name": "Santarém"
+    },
+    {
+        "district_id": 15,
+        "name": "Setúbal"
+    },
+    {
+        "district_id": 16,
+        "name": "Viana do Castelo"
+    },
+    {
+        "district_id": 17,
+        "name": "Vila Real"
+    },
+    {
+        "district_id": 18,
+        "name": "Viseu"
+    }
+]

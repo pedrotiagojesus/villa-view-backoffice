@@ -1,9 +1,33 @@
 import { db } from "../config/firebase.js";
-import { getUrl } from "../service/firebaseStorage.js";
+import { getMultipleUrl, getUrl } from "../service/firebaseStorage.js";
 
 const table = "property";
 
 export default {
+    get: async (propertyId) => {
+        const docRef = db.collection(table).doc(propertyId);
+
+        try {
+            const docSnap = await docRef.get();
+            if (!docSnap.exists) {
+                return null;
+            }
+
+            const data = {
+                id: docSnap.id,
+                ...docSnap.data(),
+                cover_image_url: await getUrl(docSnap.data().cover_image),
+                other_image_url: await getMultipleUrl(
+                    docSnap.data().other_image
+                ),
+            };
+
+            return data;
+        } catch (error) {
+            console.error("Erro ao buscar o documento:", error.message);
+            throw error;
+        }
+    },
     getAll: async () => {
         const snapshot = await db
             .collection(table)

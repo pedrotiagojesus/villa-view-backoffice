@@ -1,0 +1,22 @@
+[
+    {
+        "property_status_id": 1,
+        "name": "Novo"
+    },
+    {
+        "property_status_id": 2,
+        "name": "Usado"
+    },
+    {
+        "property_status_id": 3,
+        "name": "Em construção"
+    },
+    {
+        "property_status_id": 4,
+        "name": "Para Remodelar"
+    },
+    {
+        "property_status_id": 5,
+        "name": "Remodelado"
+    }
+]

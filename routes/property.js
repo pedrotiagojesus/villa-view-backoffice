@@ -1,6 +1,6 @@
 import express from "express";
 import {
-    listProperty,
+    getProperty,
     listPropertyHighlight,
     listPropertyNew,
     listPropertySearch,
@@ -9,7 +9,7 @@ import {
 
 const router = express.Router();
 
-router.get("/", listProperty);
+router.get("/:id", getProperty);
 router.get("/highlight/", listPropertyHighlight);
 router.get("/new/", listPropertyNew);
 router.get("/search/", listPropertySearch);
