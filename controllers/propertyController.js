@@ -18,6 +18,44 @@ export const listPropertyHighlight = async (req, res) => {
     }
 };
 
+export const listPropertyNew = async (req, res) => {
+    try {
+        const property = await PropertyModel.getNew();
+        res.status(200).json(property);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+export const listPropertySearch = async (req, res) => {
+    const priceMin = req.query.priceMin;
+    const priceMax = req.query.priceMax;
+    const districtId = req.query.districtId;
+    const countyId = req.query.countyId;
+    const parishId = req.query.parishId;
+    const propertyTypeId = req.query.propertyTypeId;
+    const propertyGoalId = req.query.propertyGoalId;
+    const propertyStatusId = req.query.propertyStatusId;
+    const room = req.query.room;
+
+    try {
+        const property = await PropertyModel.getSearch(
+            priceMin,
+            priceMax,
+            districtId,
+            countyId,
+            parishId,
+            propertyTypeId,
+            propertyGoalId,
+            propertyStatusId,
+            room
+        );
+        res.status(200).json(property);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 export const createProperty = async (req, res) => {
     try {
         const newProperty = await PropertyModel.create(req.body);

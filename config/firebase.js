@@ -9,10 +9,13 @@ const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
 if (!admin.apps.length) {
     admin.initializeApp({
         credential: admin.credential.cert(serviceAccount),
+        storageBucket: "villa-view-40e63.appspot.com",
         databaseURL: "https://villa-view-40e63.firebaseio.com",
     });
 }
 
 const db = admin.firestore();
 
-export default db;
+const bucket = admin.storage().bucket();
+
+export { db, bucket };
