@@ -1,17 +1,19 @@
-import { db } from "../config/firebase.js";
-
-const table = "district";
+import { db } from "../config/database/mysql.js";
 
 export default {
     getAll: async () => {
-        const snapshot = await db
-            .collection(table)
-            .orderBy("name", "asc")
-            .get();
-        return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+        const [result] = await db.query("SELECT * FROM `district`");
+        return result;
     },
-    create: async (data) => {
-        const ref = await db.collection(table).add(data);
-        return { id: ref.id, ...data };
+    create: async (name) => {
+        const [result] = await db.query(
+            "INSERT INTO `district` (name) VALUES (?)",
+            [name]
+        );
+        return result;
+    },
+    truncate: async (data) => {
+        const [result] = await db.query("TRUNCATE TABLE `district`");
+        return result;
     },
 };

@@ -5,7 +5,7 @@ export const connectionDb = async (req, res) => {
     try {
         await DbModel.connection();
         res.status(200).json(
-            createApiResponse("success", { message: "Conectado ao MySQL!" })
+            createApiResponse("success", "Conectado ao MySQL!")
         );
     } catch (error) {
         res.status(500).json(

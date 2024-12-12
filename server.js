@@ -5,16 +5,17 @@ import cors from "cors";
 import corsOptions from "./config/cors.js";
 
 // routes
+import dbRoutes from "./routes/db.js";
+import districtRoutes from "./routes/district.js";
+
 /*
 import countyRoutes from "./routes/county.js";
-import districtRoutes from "./routes/district.js";
 import parishRoutes from "./routes/parish.js";
 import propertyGoalRoutes from "./routes/property_goal.js";
 import propertyStatusRoutes from "./routes/property_status.js";
 import propertyTypeRoutes from "./routes/property_type.js";
 import propertyRoutes from "./routes/property.js";
 */
-import dbRoutes from "./routes/db.js";
 
 const app = express();
 app.use(express.json());
@@ -23,16 +24,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 
 // routes
+app.use("/db", dbRoutes);
+app.use("/district", districtRoutes);
+
 /*
 app.use("/county", countyRoutes);
-app.use("/district", districtRoutes);
 app.use("/parish", parishRoutes);
 app.use("/property-goal", propertyGoalRoutes);
 app.use("/property-status", propertyStatusRoutes);
 app.use("/property-type", propertyTypeRoutes);
 app.use("/property", propertyRoutes);
 */
-app.use("/db", dbRoutes);
 
 const PORT = 3000;
 app.listen(PORT, () =>
