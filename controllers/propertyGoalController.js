@@ -1,19 +1,65 @@
 import PropertyGoalModel from "../models/propertyGoalModel.js";
+import { createApiResponse } from "../utils/response.js";
+
+import dataList from "../data/property_goal.json" assert { type: 'json' };
 
 export const listPropertyGoal = async (req, res) => {
     try {
-        const propertyGoal = await PropertyGoalModel.getAll();
-        res.status(200).json(propertyGoal);
+        const PropertyGoal = await PropertyGoalModel.getAll();
+        res.status(200).json(createApiResponse("success", PropertyGoal));
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.status(500).json(
+            createApiResponse("error", null, {
+                code: "DB_CONN_ERROR",
+                message: error.message,
+            })
+        );
     }
 };
 
 export const createPropertyGoal = async (req, res) => {
     try {
         const newPropertyGoal = await PropertyGoalModel.create(req.body);
-        res.status(201).json(newPropertyGoal);
+        res.status(201).json(createApiResponse("success", newPropertyGoal));
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.status(500).json(
+            createApiResponse("error", null, {
+                code: "DB_CONN_ERROR",
+                message: error.message,
+            })
+        );
+    }
+};
+
+export const truncate = async (req, res) => {
+    try {
+        const truncate = await PropertyGoalModel.truncate();
+        res.status(200).json(createApiResponse("success", truncate));
+    } catch (error) {
+        res.status(500).json(
+            createApiResponse("error", null, {
+                code: "DB_CONN_ERROR",
+                message: error.message,
+            })
+        );
+    }
+};
+
+export const loadData = async (req, res) => {
+    try {
+        for (const item of dataList) {
+            await PropertyGoalModel.create(item.name);
+        }
+
+        res.status(201).json(
+            createApiResponse("success", "List loaded sucessfuly.")
+        );
+    } catch (error) {
+        res.status(500).json(
+            createApiResponse("error", null, {
+                code: "DB_CONN_ERROR",
+                message: error.message,
+            })
+        );
     }
 };
