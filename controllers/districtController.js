@@ -1,7 +1,7 @@
 import DistrictModel from "../models/districtModel.js";
 import { createApiResponse } from "../utils/response.js";
 
-import dataList from "../data/distric.json" assert { type: "json" };
+import dataList from "../data/distric.json" assert { type: 'json' };
 
 export const listDistrict = async (req, res) => {
     try {

@@ -1,18 +1,19 @@
-import { db } from "../config/firebase.js";
-
-const table = "county";
+import { db } from "../config/database/mysql.js";
 
 export default {
     getAll: async (districtId) => {
-        const snapshot = await db
-            .collection(table)
-            .where("district_id", "==", Number(districtId))
-            .orderBy("name", "asc")
-            .get();
-        return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+        const [result] = await db.query("SELECT * FROM `county` WHERE `district_id` = ?", [districtId]);
+        return result;
     },
-    create: async (data) => {
-        const ref = await db.collection(table).add(data);
-        return { id: ref.id, ...data };
+    create: async (districtId, name) => {
+        const [result] = await db.query(
+            "INSERT INTO `county` (`district_id`, `name`) VALUES (?, ?)",
+            [districtId, name]
+        );
+        return result;
+    },
+    truncate: async (data) => {
+        const [result] = await db.query("TRUNCATE TABLE `county`");
+        return result;
     },
 };
