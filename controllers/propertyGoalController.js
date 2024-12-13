@@ -40,6 +40,40 @@ export const createRecord = async (req, res) => {
     }
 };
 
+export const updateRecord = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { name } = req.body;
+
+        // Find record
+        const record = await PropertyGoalModel.get(id);
+
+        if (!record) {
+            return res.status(404).json(
+                createApiResponse("error", null, {
+                    code: "RECORD_NOT_FOUND",
+                    message: "Registo não encontrado.",
+                })
+            );
+        }
+
+        await PropertyGoalModel.update(id, name);
+        res.status(201).json(
+            createApiResponse("success", {
+                property_goal_id: id,
+                name,
+            })
+        );
+    } catch (error) {
+        res.status(500).json(
+            createApiResponse("error", null, {
+                code: "DB_CONN_ERROR",
+                message: error.message,
+            })
+        );
+    }
+};
+
 export const truncate = async (req, res) => {
     try {
         const truncate = await PropertyGoalModel.truncate();
