@@ -33,6 +33,35 @@ export const create = async (req, res) => {
     }
 };
 
+export const update = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { name } = req.body;
+
+        // Find record
+        const record = await DistrictModel.get(id);
+
+        if (!record) {
+            return res.status(404).json(
+                createApiResponse("error", null, {
+                    code: "RECORD_NOT_FOUND",
+                    message: 'Registo não encontrado.',
+                })
+            );
+        }
+
+        await DistrictModel.update(id, name);
+        res.status(201).json(createApiResponse("success", { name }));
+    } catch (error) {
+        res.status(500).json(
+            createApiResponse("error", null, {
+                code: "DB_CONN_ERROR",
+                message: error.message,
+            })
+        );
+    }
+};
+
 export const truncate = async (req, res) => {
     try {
         const truncate = await DistrictModel.truncate();
