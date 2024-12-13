@@ -1,6 +1,10 @@
+// Models
 import PropertyGoalModel from "../models/propertyGoalModel.js";
+
+// Utils
 import { createApiResponse } from "../utils/response.js";
 
+// Data
 import dataList from "../data/property_goal.json" assert { type: 'json' };
 
 export const listPropertyGoal = async (req, res) => {
@@ -17,10 +21,15 @@ export const listPropertyGoal = async (req, res) => {
     }
 };
 
-export const createPropertyGoal = async (req, res) => {
+export const createRecord = async (req, res) => {
     try {
-        const newPropertyGoal = await PropertyGoalModel.create(req.body);
-        res.status(201).json(createApiResponse("success", newPropertyGoal));
+        const { name } = req.body;
+
+        const newRecord = await PropertyGoalModel.create(name);
+        res.status(201).json(createApiResponse("success", {
+            property_goal_id: newRecord.insertId,
+            name,
+        }));
     } catch (error) {
         res.status(500).json(
             createApiResponse("error", null, {
