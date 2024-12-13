@@ -5,6 +5,7 @@ import {
     listDistrict,
     create,
     update,
+    deleteRecord,
     truncate,
     loadData,
 } from "../controllers/districtController.js";
@@ -17,6 +18,7 @@ const router = express.Router();
 router.get("/", listDistrict);
 router.post("/", validateCreateFields, create);
 router.put("/:id", validateUpdateFields, update);
+router.delete("/:id", deleteRecord);
 router.get("/truncate", truncate);
 router.get("/load-data", loadData);
 
