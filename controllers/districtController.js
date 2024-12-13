@@ -1,7 +1,7 @@
 import DistrictModel from "../models/districtModel.js";
 import { createApiResponse } from "../utils/response.js";
 
-import dataList from "../data/distric.json" assert { type: 'json' };
+import dataList from "../data/distric.json" assert { type: "json" };
 
 export const listDistrict = async (req, res) => {
     try {
@@ -17,10 +17,12 @@ export const listDistrict = async (req, res) => {
     }
 };
 
-export const createDistrict = async (req, res) => {
+export const create = async (req, res) => {
     try {
-        const newDistrict = await DistrictModel.create(req.body);
-        res.status(201).json(createApiResponse("success", newDistrict));
+        const { name } = req.body;
+
+        await DistrictModel.create(name);
+        res.status(201).json(createApiResponse("success", { name }));
     } catch (error) {
         res.status(500).json(
             createApiResponse("error", null, {
