@@ -8,10 +8,10 @@ export default {
         );
         return result;
     },
-    create: async (countyId, name) => {
+    create: async (districtd, countyId, name) => {
         const [result] = await db.query(
-            "INSERT INTO `parish` (`county_id`, `name`) VALUES (?, ?)",
-            [countyId, name]
+            "INSERT INTO `parish` (`district_id`, `county_id`, `name`) VALUES (?, ?, ?)",
+            [districtd, countyId, name]
         );
         return result;
     },
