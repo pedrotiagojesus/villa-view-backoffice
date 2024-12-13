@@ -2,8 +2,8 @@ import { db } from "../config/database/mysql.js";
 
 export default {
     getAll: async () => {
-        const [result] = await db.query("SELECT * FROM `district`");
-        return result;
+        const [rows] = await db.query("SELECT * FROM `district`");
+        return rows;
     },
     get: async (id) => {
         const [rows] = await db.query(

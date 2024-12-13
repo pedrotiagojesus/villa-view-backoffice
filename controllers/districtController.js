@@ -1,9 +1,13 @@
+// Models
 import DistrictModel from "../models/districtModel.js";
+
+// Utils
 import { createApiResponse } from "../utils/response.js";
 
+// Data
 import dataList from "../data/distric.json" assert { type: "json" };
 
-export const listDistrict = async (req, res) => {
+export const listRecords = async (req, res) => {
     try {
         const district = await DistrictModel.getAll();
         res.status(200).json(createApiResponse("success", district));
@@ -17,12 +21,18 @@ export const listDistrict = async (req, res) => {
     }
 };
 
-export const create = async (req, res) => {
+export const createRecord = async (req, res) => {
     try {
         const { name } = req.body;
 
-        await DistrictModel.create(name);
-        res.status(201).json(createApiResponse("success", { name }));
+        const newRecord = await DistrictModel.create(name);
+
+        res.status(201).json(
+            createApiResponse("success", {
+                district_id: newRecord.insertId,
+                name,
+            })
+        );
     } catch (error) {
         res.status(500).json(
             createApiResponse("error", null, {
@@ -33,7 +43,7 @@ export const create = async (req, res) => {
     }
 };
 
-export const update = async (req, res) => {
+export const updateRecord = async (req, res) => {
     try {
         const { id } = req.params;
         const { name } = req.body;
@@ -45,13 +55,18 @@ export const update = async (req, res) => {
             return res.status(404).json(
                 createApiResponse("error", null, {
                     code: "RECORD_NOT_FOUND",
-                    message: 'Registo não encontrado.',
+                    message: "Registo não encontrado.",
                 })
             );
         }
 
         await DistrictModel.update(id, name);
-        res.status(201).json(createApiResponse("success", { name }));
+        res.status(201).json(
+            createApiResponse("success", {
+                district_id: id,
+                name,
+            })
+        );
     } catch (error) {
         res.status(500).json(
             createApiResponse("error", null, {
@@ -73,7 +88,7 @@ export const deleteRecord = async (req, res) => {
             return res.status(404).json(
                 createApiResponse("error", null, {
                     code: "RECORD_NOT_FOUND",
-                    message: 'Registo não encontrado.',
+                    message: "Registo não encontrado.",
                 })
             );
         }

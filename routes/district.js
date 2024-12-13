@@ -2,9 +2,9 @@ import express from "express";
 
 // Controller
 import {
-    listDistrict,
-    create,
-    update,
+    listRecords,
+    createRecord,
+    updateRecord,
     deleteRecord,
     truncate,
     loadData,
@@ -15,9 +15,9 @@ import { validateCreateFields, validateUpdateFields } from "../middleware/valida
 
 const router = express.Router();
 
-router.get("/", listDistrict);
-router.post("/", validateCreateFields, create);
-router.put("/:id", validateUpdateFields, update);
+router.get("/", listRecords);
+router.post("/", validateCreateFields, createRecord);
+router.put("/:id", validateUpdateFields, updateRecord);
 router.delete("/:id", deleteRecord);
 router.get("/truncate", truncate);
 router.get("/load-data", loadData);
