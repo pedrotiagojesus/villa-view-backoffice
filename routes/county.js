@@ -1,6 +1,6 @@
 import express from "express";
 import {
-    listCounty,
+    listRecords,
     createCounty,
     truncate,
     loadData,
@@ -8,7 +8,7 @@ import {
 
 const router = express.Router();
 
-router.get("/", listCounty);
+router.get("/", listRecords);
 router.post("/", createCounty);
 router.get("/truncate", truncate);
 router.get("/load-data", loadData);

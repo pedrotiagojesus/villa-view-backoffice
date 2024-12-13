@@ -1,6 +1,6 @@
 import express from "express";
 import {
-    listParish,
+    listRecords,
     createParish,
     truncate,
     loadData,
@@ -8,7 +8,7 @@ import {
 
 const router = express.Router();
 
-router.get("/", listParish);
+router.get("/", listRecords);
 router.post("/", createParish);
 router.get("/truncate", truncate);
 router.get("/load-data", loadData);

@@ -3,7 +3,7 @@ import { createApiResponse } from "../utils/response.js";
 
 import dataList from "../data/property_status.json" assert { type: 'json' };
 
-export const listPropertyStatus = async (req, res) => {
+export const listRecords = async (req, res) => {
     try {
         const PropertyStatus = await PropertyStatusModel.getAll();
         res.status(200).json(createApiResponse("success", PropertyStatus));

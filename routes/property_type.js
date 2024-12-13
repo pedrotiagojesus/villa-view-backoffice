@@ -1,6 +1,6 @@
 import express from "express";
 import {
-    listPropertyType,
+    listRecords,
     createPropertyType,
     truncate,
     loadData,
@@ -8,7 +8,7 @@ import {
 
 const router = express.Router();
 
-router.get("/", listPropertyType);
+router.get("/", listRecords);
 router.post("/", createPropertyType);
 router.get("/truncate", truncate);
 router.get("/load-data", loadData);

@@ -3,7 +3,7 @@ import { createApiResponse } from "../utils/response.js";
 
 import dataList from "../data/county.json" assert { type: "json" };
 
-export const listCounty = async (req, res) => {
+export const listRecords = async (req, res) => {
     const districtId = req.query.districtId;
 
     if (!districtId) {

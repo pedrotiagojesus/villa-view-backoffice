@@ -2,7 +2,7 @@ import express from "express";
 
 // Controller
 import {
-    listPropertyGoal,
+    listRecords,
     createRecord,
     updateRecord,
     deleteRecord,
@@ -18,7 +18,7 @@ import {
 
 const router = express.Router();
 
-router.get("/", listPropertyGoal);
+router.get("/", listRecords);
 router.post("/", validateCreateFields, createRecord);
 router.put("/:id", validateUpdateFields, updateRecord);
 router.delete("/:id", deleteRecord);
