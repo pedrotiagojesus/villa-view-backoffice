@@ -70,6 +70,34 @@ export const updateRecord = async (req, res) => {
     }
 };
 
+export const deleteRecord = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        // Find record
+        const record = await PropertyTypeModel.get(id);
+
+        if (!record) {
+            return res.status(404).json(
+                createApiResponse("error", null, {
+                    code: "RECORD_NOT_FOUND",
+                    message: "Registo não encontrado.",
+                })
+            );
+        }
+
+        await PropertyTypeModel.delete(id);
+        res.status(200).json(createApiResponse("success"));
+    } catch (error) {
+        res.status(500).json(
+            createApiResponse("error", null, {
+                code: "DB_CONN_ERROR",
+                message: error.message,
+            })
+        );
+    }
+};
+
 export const truncate = async (req, res) => {
     try {
         const truncate = await PropertyTypeModel.truncate();

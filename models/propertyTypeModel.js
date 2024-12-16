@@ -27,6 +27,13 @@ export default {
         );
         return result;
     },
+    delete: async (id) => {
+        const [result] = await db.query(
+            "DELETE FROM `property_type` WHERE `property_type_id` = ?",
+            [id]
+        );
+        return result;
+    },
     truncate: async (data) => {
         const [result] = await db.query("TRUNCATE TABLE `property_type`");
         return result;
