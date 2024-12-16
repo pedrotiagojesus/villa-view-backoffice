@@ -17,10 +17,16 @@ export const listRecords = async (req, res) => {
     }
 };
 
-export const createPropertyStatus = async (req, res) => {
+
+export const createRecord = async (req, res) => {
     try {
-        const newPropertyStatus = await PropertyStatusModel.create(req.body);
-        res.status(201).json(createApiResponse("success", newPropertyStatus));
+        const { name } = req.body;
+
+        const newRecord = await PropertyStatusModel.create(name);
+        res.status(201).json(createApiResponse("success", {
+            property_status_id: newRecord.insertId,
+            name,
+        }));
     } catch (error) {
         res.status(500).json(
             createApiResponse("error", null, {
