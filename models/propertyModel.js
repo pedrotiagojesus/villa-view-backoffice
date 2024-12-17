@@ -3,48 +3,14 @@ import { db } from "../config/database/mysql.js";
 const table = "property";
 
 export default {
-    /*
-    get: async (propertyId) => {
-        const docRef = db.collection(table).doc(propertyId);
-
-        try {
-            const docSnap = await docRef.get();
-            if (!docSnap.exists) {
-                return null;
-            }
-
-            const data = {
-                id: docSnap.id,
-                ...docSnap.data(),
-                cover_image_url: await getUrl(docSnap.data().cover_image),
-                other_image_url: await getMultipleUrl(
-                    docSnap.data().other_image
-                ),
-            };
-
-            return data;
-        } catch (error) {
-            console.error("Erro ao buscar o documento:", error.message);
-            throw error;
-        }
-    },
-    getNew: async () => {
-        const snapshot = await db
-            .collection(table)
-            .where("is_visible", "==", true)
-            .orderBy("createdAt", "desc")
-            .get();
-        const data = await Promise.all(
-            snapshot.docs.map(async (doc) => ({
-                id: doc.id,
-                ...doc.data(),
-                cover_image_url: await getUrl(doc.data().cover_image),
-            }))
+    get: async (id) => {
+        const [rows] = await db.query(
+            "SELECT * FROM `property` WHERE `property_id` = ?",
+            [id]
         );
-
-        return data;
+        const row = rows.length > 0 ? rows[0] : null;
+        return row;
     },
-    */
     getAll: async (
         is_highlight,
         price_min,
@@ -198,6 +164,13 @@ export default {
                 is_visible,
                 is_highlight,
             ]
+        );
+        return result;
+    },
+    delete: async (id) => {
+        const [result] = await db.query(
+            "DELETE FROM `property` WHERE `property_id` = ?",
+            [id]
         );
         return result;
     },

@@ -6,6 +6,7 @@ import {
     listRecordsHighlight,
     listRecordsSearch,
     createRecord,
+    deleteRecord,
 
     getProperty,
 } from "../controllers/propertyController.js";
@@ -22,6 +23,7 @@ router.get("/", listRecords);
 router.get("/highlight/", listRecordsHighlight);
 router.get("/search/", listRecordsSearch);
 router.post("/", validate(createPropertySchema), createRecord);
+router.delete("/:id", deleteRecord);
 
 /*
 router.get("/:id", getProperty);
