@@ -29,10 +29,15 @@ export const listRecords = async (req, res) => {
     }
 };
 
-export const createCounty = async (req, res) => {
+export const createRecord = async (req, res) => {
     try {
-        const newCounty = await CountyModel.create(req.body);
-        res.status(201).json(createApiResponse("success", newCounty));
+        const newRecord = await CountyModel.create(req.validatedData);
+        res.status(201).json(
+            createApiResponse("success", {
+                county_id: newRecord.insertId,
+                ...req.validatedData,
+            })
+        );
     } catch (error) {
         res.status(500).json(
             createApiResponse("error", null, {
