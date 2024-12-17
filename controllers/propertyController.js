@@ -18,6 +18,20 @@ export const listRecords = async (req, res) => {
     }
 };
 
+export const listRecordsHighlight = async (req, res) => {
+    try {
+        const properties = await PropertyModel.getAllHighlight();
+        res.status(200).json(createApiResponse("success", properties));
+    } catch (error) {
+        res.status(500).json(
+            createApiResponse("error", null, {
+                code: "DB_CONN_ERROR",
+                message: error.message,
+            })
+        );
+    }
+};
+
 export const createRecord = async (req, res) => {
     try {
         const newRecord = await PropertyModel.create(req.validatedData);
@@ -43,24 +57,6 @@ export const getProperty = async (req, res) => {
         const propertyId = req.params.id;
 
         const property = await PropertyModel.get(propertyId);
-        res.status(200).json(property);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-};
-
-export const listPropertyHighlight = async (req, res) => {
-    try {
-        const property = await PropertyModel.getHighlight();
-        res.status(200).json(property);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-};
-
-export const listPropertyNew = async (req, res) => {
-    try {
-        const property = await PropertyModel.getNew();
         res.status(200).json(property);
     } catch (error) {
         res.status(500).json({ error: error.message });

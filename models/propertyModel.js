@@ -28,23 +28,6 @@ export default {
             throw error;
         }
     },
-    getHighlight: async () => {
-        const snapshot = await db
-            .collection(table)
-            .where("is_visible", "==", true)
-            .where("is_highlight", "==", true)
-            .orderBy("createdAt", "desc")
-            .get();
-        const data = await Promise.all(
-            snapshot.docs.map(async (doc) => ({
-                id: doc.id,
-                ...doc.data(),
-                cover_image_url: await getUrl(doc.data().cover_image),
-            }))
-        );
-
-        return data;
-    },
     getNew: async () => {
         const snapshot = await db
             .collection(table)
@@ -139,8 +122,15 @@ export default {
     */
     getAll: async () => {
         const [result] = await db.query(
-            "SELECT * FROM `property` WHERE `is_visible` = ?",
+            "SELECT * FROM `property` WHERE `is_visible` = ? ORDER BY `creation_date` DESC",
             [true]
+        );
+        return result;
+    },
+    getAllHighlight: async () => {
+        const [result] = await db.query(
+            "SELECT * FROM `property` WHERE `is_visible` = ? AND `is_highlight` = ? ORDER BY `creation_date` DESC",
+            [true, true]
         );
         return result;
     },
