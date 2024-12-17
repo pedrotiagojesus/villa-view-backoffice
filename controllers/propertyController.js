@@ -1,4 +1,31 @@
+// Models
 import PropertyModel from "../models/propertyModel.js";
+
+// Utils
+import { createApiResponse } from "../utils/response.js";
+
+// Config
+import { propertyFields } from "../config/defaultFields.js";
+
+export const createRecord = async (req, res) => {
+    try {
+        const newRecord = await PropertyModel.create(req.validatedData);
+        res.status(201).json(
+            createApiResponse("success", {
+                property_id: newRecord.insertId,
+                ...req.validatedData,
+            })
+        );
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(
+            createApiResponse("error", null, {
+                code: "DB_CONN_ERROR",
+                message: error.message,
+            })
+        );
+    }
+};
 
 export const getProperty = async (req, res) => {
     try {
@@ -53,15 +80,6 @@ export const listPropertySearch = async (req, res) => {
             room
         );
         res.status(200).json(property);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-};
-
-export const createProperty = async (req, res) => {
-    try {
-        const newProperty = await PropertyModel.create(req.body);
-        res.status(201).json(newProperty);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

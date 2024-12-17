@@ -1,9 +1,9 @@
-import { db } from "../config/firebase.js";
-import { getMultipleUrl, getUrl } from "../service/firebaseStorage.js";
+import { db } from "../config/database/mysql.js";
 
 const table = "property";
 
 export default {
+    /*
     get: async (propertyId) => {
         const docRef = db.collection(table).doc(propertyId);
 
@@ -152,8 +152,96 @@ export default {
 
         return data;
     },
-    create: async (data) => {
-        const ref = await db.collection("property").add(data);
-        return { id: ref.id, ...data };
+    */
+    create: async ({
+        reference,
+        district_id,
+        county_id,
+        parish_id,
+        property_goal_id,
+        property_status_id,
+        property_type_id,
+        property_name,
+        description,
+        construction_year,
+        contact,
+        cover_image,
+        email,
+        latitude,
+        longitude,
+        name,
+        price,
+        room,
+        is_visible,
+        is_highlight,
+    }) => {
+        const [result] = await db.query(
+            `INSERT INTO property (
+                reference,
+                district_id,
+                county_id,
+                parish_id,
+                property_goal_id,
+                property_status_id,
+                property_type_id,
+                property_name,
+                description,
+                construction_year,
+                contact,
+                cover_image,
+                email,
+                latitude,
+                longitude,
+                name,
+                price,
+                room,
+                is_visible,
+                is_highlight
+            ) VALUES (
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?
+            )`,
+            [
+                reference,
+                district_id,
+                county_id,
+                parish_id,
+                property_goal_id,
+                property_status_id,
+                property_type_id,
+                property_name,
+                description,
+                construction_year,
+                contact,
+                cover_image,
+                email,
+                latitude,
+                longitude,
+                name,
+                price,
+                room,
+                is_visible,
+                is_highlight,
+            ]
+        );
+        return result;
     },
 };
