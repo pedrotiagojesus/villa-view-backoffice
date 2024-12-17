@@ -29,11 +29,16 @@ export const listRecords = async (req, res) => {
     }
 };
 
-export const createParish = async (req, res) => {
+export const createRecord = async (req, res) => {
 
     try {
-        const newParish = await ParishModel.create(req.body);
-        res.status(201).json(createApiResponse("success", newParish));
+        const newRecord = await ParishModel.create(req.validatedData);
+        res.status(201).json(
+            createApiResponse("success", {
+                parish_id: newRecord.insertId,
+                ...req.validatedData,
+            })
+        );
     } catch (error) {
         res.status(500).json(
             createApiResponse("error", null, {
