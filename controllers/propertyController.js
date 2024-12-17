@@ -4,6 +4,33 @@ import PropertyModel from "../models/propertyModel.js";
 // Utils
 import { createApiResponse } from "../utils/response.js";
 
+export const getRecord = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        // Find record
+        const record = await PropertyModel.get(id);
+
+        if (!record) {
+            return res.status(404).json(
+                createApiResponse("error", null, {
+                    code: "RECORD_NOT_FOUND",
+                    message: "Registo não encontrado.",
+                })
+            );
+        }
+
+        res.status(200).json(createApiResponse("success", record));
+    } catch (error) {
+        res.status(500).json(
+            createApiResponse("error", null, {
+                code: "DB_CONN_ERROR",
+                message: error.message,
+            })
+        );
+    }
+};
+
 export const listRecords = async (req, res) => {
     try {
         const properties = await PropertyModel.getAll();

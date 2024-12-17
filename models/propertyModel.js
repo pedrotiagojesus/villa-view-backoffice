@@ -5,8 +5,8 @@ const table = "property";
 export default {
     get: async (id) => {
         const [rows] = await db.query(
-            "SELECT * FROM `property` WHERE `property_id` = ?",
-            [id]
+            "SELECT * FROM `property` WHERE `property_id` = ? AND is_visible = ?",
+            [id, true]
         );
         const row = rows.length > 0 ? rows[0] : null;
         return row;
