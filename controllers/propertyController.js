@@ -4,6 +4,20 @@ import PropertyModel from "../models/propertyModel.js";
 // Utils
 import { createApiResponse } from "../utils/response.js";
 
+export const listRecords = async (req, res) => {
+    try {
+        const properties = await PropertyModel.getAll();
+        res.status(200).json(createApiResponse("success", properties));
+    } catch (error) {
+        res.status(500).json(
+            createApiResponse("error", null, {
+                code: "DB_CONN_ERROR",
+                message: error.message,
+            })
+        );
+    }
+};
+
 export const createRecord = async (req, res) => {
     try {
         const newRecord = await PropertyModel.create(req.validatedData);

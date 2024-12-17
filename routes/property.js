@@ -2,6 +2,7 @@ import express from "express";
 
 // Controller
 import {
+    listRecords,
     createRecord,
 
     getProperty,
@@ -18,7 +19,7 @@ import { createPropertySchema } from "../schemas/index.js";
 
 const router = express.Router();
 
-// router.post("/", validateCreateFields, createRecord);
+router.get("/", listRecords);
 router.post("/", validate(createPropertySchema), createRecord);
 
 /*

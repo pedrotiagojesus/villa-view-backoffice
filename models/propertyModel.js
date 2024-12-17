@@ -28,22 +28,6 @@ export default {
             throw error;
         }
     },
-    getAll: async () => {
-        const snapshot = await db
-            .collection(table)
-            .where("is_visible", "==", true)
-            .orderBy("createdAt", "desc")
-            .get();
-        const data = await Promise.all(
-            snapshot.docs.map(async (doc) => ({
-                id: doc.id,
-                ...doc.data(),
-                cover_image_url: await getUrl(doc.data().cover_image),
-            }))
-        );
-
-        return data;
-    },
     getHighlight: async () => {
         const snapshot = await db
             .collection(table)
@@ -153,6 +137,13 @@ export default {
         return data;
     },
     */
+    getAll: async () => {
+        const [result] = await db.query(
+            "SELECT * FROM `property` WHERE `is_visible` = ?",
+            [true]
+        );
+        return result;
+    },
     create: async ({
         reference,
         district_id,
