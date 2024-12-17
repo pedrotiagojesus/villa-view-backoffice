@@ -13,14 +13,14 @@ export default {
         const row = rows.length > 0 ? rows[0] : null;
         return row;
     },
-    create: async (name) => {
+    create: async ({ name }) => {
         const [result] = await db.query(
             "INSERT INTO `property_type` (name) VALUES (?)",
             [name]
         );
         return result;
     },
-    update: async (id, name) => {
+    update: async (id, { name }) => {
         const [result] = await db.query(
             "UPDATE `property_type` SET `name` = ? WHERE `property_type_id` = ?",
             [name, id]

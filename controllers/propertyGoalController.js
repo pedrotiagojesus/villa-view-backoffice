@@ -5,7 +5,7 @@ import PropertyGoalModel from "../models/propertyGoalModel.js";
 import { createApiResponse } from "../utils/response.js";
 
 // Data
-import dataList from "../data/property_goal.json" assert { type: 'json' };
+import dataList from "../data/property_goal.json" assert { type: "json" };
 
 export const listRecords = async (req, res) => {
     try {
@@ -23,13 +23,13 @@ export const listRecords = async (req, res) => {
 
 export const createRecord = async (req, res) => {
     try {
-        const { name } = req.body;
-
-        const newRecord = await PropertyGoalModel.create(name);
-        res.status(201).json(createApiResponse("success", {
-            property_goal_id: newRecord.insertId,
-            name,
-        }));
+        const newRecord = await PropertyGoalModel.create(req.validatedData);
+        res.status(201).json(
+            createApiResponse("success", {
+                property_goal_id: newRecord.insertId,
+                ...req.validatedData,
+            })
+        );
     } catch (error) {
         res.status(500).json(
             createApiResponse("error", null, {
@@ -43,7 +43,6 @@ export const createRecord = async (req, res) => {
 export const updateRecord = async (req, res) => {
     try {
         const { id } = req.params;
-        const { name } = req.body;
 
         // Find record
         const record = await PropertyGoalModel.get(id);
@@ -57,11 +56,11 @@ export const updateRecord = async (req, res) => {
             );
         }
 
-        await PropertyGoalModel.update(id, name);
+        await PropertyGoalModel.update(id, req.validatedData);
         res.status(201).json(
             createApiResponse("success", {
                 property_goal_id: id,
-                name,
+                ...req.validatedData,
             })
         );
     } catch (error) {

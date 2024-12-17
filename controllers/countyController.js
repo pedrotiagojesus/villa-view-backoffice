@@ -1,6 +1,10 @@
+// Models
 import CountyModel from "../models/countyModel.js";
+
+// Utils
 import { createApiResponse } from "../utils/response.js";
 
+// Data
 import dataList from "../data/county.json" assert { type: "json" };
 
 export const listRecords = async (req, res) => {

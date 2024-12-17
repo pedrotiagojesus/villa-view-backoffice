@@ -23,14 +23,12 @@ export const listRecords = async (req, res) => {
 
 export const createRecord = async (req, res) => {
     try {
-        const { name } = req.body;
-
-        const newRecord = await DistrictModel.create(name);
+        const newRecord = await DistrictModel.create(req.validatedData);
 
         res.status(201).json(
             createApiResponse("success", {
                 district_id: newRecord.insertId,
-                name,
+                ...req.validatedData,
             })
         );
     } catch (error) {
@@ -46,7 +44,6 @@ export const createRecord = async (req, res) => {
 export const updateRecord = async (req, res) => {
     try {
         const { id } = req.params;
-        const { name } = req.body;
 
         // Find record
         const record = await DistrictModel.get(id);
@@ -60,11 +57,11 @@ export const updateRecord = async (req, res) => {
             );
         }
 
-        await DistrictModel.update(id, name);
+        await DistrictModel.update(id, req.validatedData);
         res.status(201).json(
             createApiResponse("success", {
                 district_id: id,
-                name,
+                ...req.validatedData,
             })
         );
     } catch (error) {

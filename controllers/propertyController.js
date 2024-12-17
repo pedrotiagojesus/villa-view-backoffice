@@ -4,9 +4,6 @@ import PropertyModel from "../models/propertyModel.js";
 // Utils
 import { createApiResponse } from "../utils/response.js";
 
-// Config
-import { propertyFields } from "../config/defaultFields.js";
-
 export const createRecord = async (req, res) => {
     try {
         const newRecord = await PropertyModel.create(req.validatedData);
