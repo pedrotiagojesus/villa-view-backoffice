@@ -4,6 +4,7 @@ import express from "express";
 import {
     listRecords,
     createRecord,
+    updateRecord,
     truncate,
     loadData,
 } from "../controllers/countyController.js";
@@ -18,6 +19,7 @@ const router = express.Router();
 
 router.get("/", listRecords);
 router.post("/", validate(createCountySchema), createRecord);
+router.put("/:id", validate(createCountySchema), updateRecord);
 router.get("/truncate", truncate);
 router.get("/load-data", loadData);
 
