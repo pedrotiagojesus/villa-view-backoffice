@@ -28,4 +28,27 @@ const createPropertySchema = Joi.object({
     is_highlight: Joi.boolean().default(false),
 });
 
-export { createPropertySchema };
+const updatePropertySchema = Joi.object({
+    reference: Joi.string().optional(),
+    district_id: Joi.number().optional(),
+    county_id: Joi.number().optional(),
+    parish_id: Joi.number().optional(),
+    property_goal_id: Joi.number().optional(),
+    property_status_id: Joi.number().optional(),
+    property_type_id: Joi.number().optional(),
+    property_name: Joi.string().optional(),
+    description: Joi.string().allow(null).optional(),
+    construction_year: Joi.number().allow(null).optional(),
+    contact: Joi.string().allow(null).optional(),
+    cover_image: Joi.string().allow(null).optional(),
+    email: Joi.string().email().allow(null).optional(),
+    latitude: Joi.number().allow(null).optional(),
+    longitude: Joi.number().allow(null).optional(),
+    name: Joi.string().allow(null).optional(),
+    price: Joi.number().optional(),
+    room: Joi.number().optional(),
+    is_visible: Joi.boolean().optional(),
+    is_highlight: Joi.boolean().optional(),
+});
+
+export { createPropertySchema, updatePropertySchema };

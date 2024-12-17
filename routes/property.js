@@ -7,6 +7,7 @@ import {
     listRecordsHighlight,
     listRecordsSearch,
     createRecord,
+    updateRecord,
     deleteRecord,
 } from "../controllers/propertyController.js";
 
@@ -14,7 +15,10 @@ import {
 import validate from "../middleware/validate.js";
 
 // Schema
-import { createPropertySchema } from "../schemas/index.js";
+import {
+    createPropertySchema,
+    updatePropertySchema,
+} from "../schemas/index.js";
 
 const router = express.Router();
 
@@ -23,6 +27,7 @@ router.get("/:id", getRecord);
 router.get("/highlight/", listRecordsHighlight);
 router.get("/search/", listRecordsSearch);
 router.post("/", validate(createPropertySchema), createRecord);
+router.put("/:id", validate(updatePropertySchema), updateRecord);
 router.delete("/:id", deleteRecord);
 
 export default router;

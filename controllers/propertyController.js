@@ -109,6 +109,42 @@ export const createRecord = async (req, res) => {
     }
 };
 
+export const updateRecord = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        // Find record
+        const record = await PropertyModel.get(id);
+
+        if (!record) {
+            return res.status(404).json(
+                createApiResponse("error", null, {
+                    code: "RECORD_NOT_FOUND",
+                    message: "Registo não encontrado.",
+                })
+            );
+        }
+
+        const mergedData = { ...record, ...req.validatedData };
+
+        await PropertyModel.update(id, mergedData);
+        res.status(201).json(
+            createApiResponse("success", {
+                property_id: id,
+                ...mergedData,
+            })
+        );
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(
+            createApiResponse("error", null, {
+                code: "DB_CONN_ERROR",
+                message: error.message,
+            })
+        );
+    }
+};
+
 export const deleteRecord = async (req, res) => {
     try {
         const { id } = req.params;
