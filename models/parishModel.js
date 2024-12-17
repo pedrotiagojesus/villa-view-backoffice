@@ -30,6 +30,13 @@ export default {
         );
         return result;
     },
+    delete: async (id) => {
+        const [result] = await db.query(
+            "DELETE FROM `parish` WHERE `parish_id` = ?",
+            [id]
+        );
+        return result;
+    },
     truncate: async (data) => {
         const [result] = await db.query("TRUNCATE TABLE `parish`");
         return result;
