@@ -20,7 +20,7 @@ export const listRecords = async (req, res) => {
 
 export const listRecordsHighlight = async (req, res) => {
     try {
-        const properties = await PropertyModel.getAllHighlight();
+        const properties = await PropertyModel.getAll(true);
         res.status(200).json(createApiResponse("success", properties));
     } catch (error) {
         res.status(500).json(
@@ -29,6 +29,36 @@ export const listRecordsHighlight = async (req, res) => {
                 message: error.message,
             })
         );
+    }
+};
+
+export const listRecordsSearch = async (req, res) => {
+    const price_min = req.query.price_min;
+    const price_max = req.query.price_max;
+    const district_id = req.query.district_id;
+    const county_id = req.query.county_id;
+    const parish_id = req.query.parish_id;
+    const property_type_id = req.query.property_type_id;
+    const property_goal_id = req.query.property_goal_id;
+    const property_status_id = req.query.property_status_id;
+    const room = req.query.room;
+
+    try {
+        const properties = await PropertyModel.getAll(
+            null,
+            price_min,
+            price_max,
+            district_id,
+            county_id,
+            parish_id,
+            property_type_id,
+            property_goal_id,
+            property_status_id,
+            room
+        );
+        res.status(200).json(createApiResponse("success", properties));
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
 };
 
@@ -57,35 +87,6 @@ export const getProperty = async (req, res) => {
         const propertyId = req.params.id;
 
         const property = await PropertyModel.get(propertyId);
-        res.status(200).json(property);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-};
-
-export const listPropertySearch = async (req, res) => {
-    const priceMin = req.query.priceMin;
-    const priceMax = req.query.priceMax;
-    const districtId = req.query.districtId;
-    const countyId = req.query.countyId;
-    const parishId = req.query.parishId;
-    const propertyTypeId = req.query.propertyTypeId;
-    const propertyGoalId = req.query.propertyGoalId;
-    const propertyStatusId = req.query.propertyStatusId;
-    const room = req.query.room;
-
-    try {
-        const property = await PropertyModel.getSearch(
-            priceMin,
-            priceMax,
-            districtId,
-            countyId,
-            parishId,
-            propertyTypeId,
-            propertyGoalId,
-            propertyStatusId,
-            room
-        );
         res.status(200).json(property);
     } catch (error) {
         res.status(500).json({ error: error.message });

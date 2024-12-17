@@ -44,94 +44,70 @@ export default {
 
         return data;
     },
-    getSearch: async (
-        priceMin,
-        priceMax,
-        districtId,
-        countyId,
-        parishId,
-        propertyTypeId,
-        propertyGoalId,
-        propertyStatusId,
+    */
+    getAll: async (
+        is_highlight,
+        price_min,
+        price_max,
+        district_id,
+        county_id,
+        parish_id,
+        property_type_id,
+        property_goal_id,
+        property_status_id,
         room
     ) => {
-        let query = db.collection(table).where("is_visible", "==", true);
+        let query = "SELECT * FROM property WHERE is_visible = ?";
+        let data = [true];
 
-        if (priceMin != null) {
-            query = query.where("price", ">=", Number(priceMin));
+        if (typeof is_highlight == "boolean") {
+            query += " AND is_highlight = ?"
+            data.push(is_highlight);
         }
 
-        if (priceMax != null) {
-            query = query.where("price", "<=", Number(priceMax));
+        if (price_min && price_max) {
+            query += " AND price BETWEEN ? AND ?"
+            data.push(price_min, price_max);
         }
 
-        if (districtId != null) {
-            query = query.where("district_id", "==", Number(districtId));
+        if (district_id) {
+            query += " AND district_id = ?"
+            data.push(district_id);
         }
 
-        if (countyId != null) {
-            query = query.where("county_id", "==", Number(countyId));
+        if (county_id) {
+            query += " AND county_id = ?"
+            data.push(county_id);
         }
 
-        if (parishId != null) {
-            query = query.where("parish_id", "==", Number(parishId));
+        if (parish_id) {
+            query += " AND parish_id = ?"
+            data.push(parish_id);
         }
 
-        if (propertyTypeId != null) {
-            query = query.where(
-                "property_type_id",
-                "==",
-                Number(propertyTypeId)
-            );
+        if (property_type_id) {
+            query += " AND property_type_id = ?"
+            data.push(property_type_id);
         }
 
-        if (propertyGoalId != null) {
-            query = query.where(
-                "property_goal_id",
-                "==",
-                Number(propertyGoalId)
-            );
+        if (property_goal_id) {
+            query += " AND property_goal_id = ?"
+            data.push(property_goal_id);
         }
 
-        if (propertyStatusId != null) {
-            query = query.where(
-                "property_status_id",
-                "==",
-                Number(propertyStatusId)
-            );
+        if (property_status_id) {
+            query += " AND property_status_id = ?"
+            data.push(property_status_id);
         }
 
-        if (room != null) {
-            query = query.where("room", "==", Number(room));
+        if (room) {
+            query += " AND room = ?"
+            data.push(room);
         }
 
-        query = query.orderBy("createdAt", "desc");
+        query += " ORDER BY `creation_date` DESC";
 
-        const snapshot = await query.get();
-
-        const data = await Promise.all(
-            snapshot.docs.map(async (doc) => ({
-                id: doc.id,
-                ...doc.data(),
-                cover_image_url: await getUrl(doc.data().cover_image),
-            }))
-        );
-
-        return data;
-    },
-    */
-    getAll: async () => {
-        const [result] = await db.query(
-            "SELECT * FROM `property` WHERE `is_visible` = ? ORDER BY `creation_date` DESC",
-            [true]
-        );
-        return result;
-    },
-    getAllHighlight: async () => {
-        const [result] = await db.query(
-            "SELECT * FROM `property` WHERE `is_visible` = ? AND `is_highlight` = ? ORDER BY `creation_date` DESC",
-            [true, true]
-        );
+        const [result] = await db.query(query, data);
         return result;
     },
     create: async ({

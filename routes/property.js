@@ -4,10 +4,10 @@ import express from "express";
 import {
     listRecords,
     listRecordsHighlight,
+    listRecordsSearch,
     createRecord,
 
     getProperty,
-    listPropertySearch,
 } from "../controllers/propertyController.js";
 
 // Middleware
@@ -20,10 +20,10 @@ const router = express.Router();
 
 router.get("/", listRecords);
 router.get("/highlight/", listRecordsHighlight);
+router.get("/search/", listRecordsSearch);
 router.post("/", validate(createPropertySchema), createRecord);
 
 /*
-router.get("/search/", listPropertySearch);
 router.get("/:id", getProperty);
 */
 
