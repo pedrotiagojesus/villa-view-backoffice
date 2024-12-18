@@ -5,6 +5,7 @@ import CountyModel from "../models/countyModel.js";
 import ParishModel from "../models/parishModel.js";
 import PropertyGoalModel from "../models/propertyGoalModel.js";
 import PropertyStatusModel from "../models/propertyStatusModel.js";
+import PropertyTypeModel from "../models/propertyTypeModel.js";
 
 // Utils
 import { createApiResponse } from "../utils/response.js";
@@ -102,6 +103,7 @@ export const createRecord = async (req, res) => {
             parish_id,
             property_goal_id,
             property_status_id,
+            property_type_id,
         } = req.validatedData;
 
         // Find district
@@ -186,6 +188,18 @@ export const createRecord = async (req, res) => {
             );
         }
 
+        // Find property type
+        const property_type = await PropertyTypeModel.get(property_type_id);
+
+        if (!property_type) {
+            return res.status(404).json(
+                createApiResponse("error", null, {
+                    code: "RECORD_NOT_FOUND",
+                    message: "O property_type_id fornecido não existe.",
+                })
+            );
+        }
+
         const newRecord = await PropertyModel.create(req.validatedData);
         res.status(201).json(
             createApiResponse("success", {
@@ -213,6 +227,7 @@ export const updateRecord = async (req, res) => {
             parish_id,
             property_goal_id,
             property_status_id,
+            property_type_id,
         } = req.validatedData;
 
         // Find record
@@ -307,6 +322,18 @@ export const updateRecord = async (req, res) => {
                 createApiResponse("error", null, {
                     code: "RECORD_NOT_FOUND",
                     message: "O property_status_id fornecido não existe.",
+                })
+            );
+        }
+
+        // Find property type
+        const property_type = await PropertyTypeModel.get(property_type_id);
+
+        if (!property_type) {
+            return res.status(404).json(
+                createApiResponse("error", null, {
+                    code: "RECORD_NOT_FOUND",
+                    message: "O property_type_id fornecido não existe.",
                 })
             );
         }
