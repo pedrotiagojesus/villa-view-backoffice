@@ -2,10 +2,15 @@ import { db } from "../config/database/mysql.js";
 
 export default {
     getAll: async (districtId) => {
-        const [result] = await db.query(
-            "SELECT * FROM `county` WHERE `district_id` = ?",
-            [districtId]
-        );
+        let query = "SELECT * FROM `county` WHERE 1";
+        let data = [];
+
+        if (districtId) {
+            query += " AND `district_id` = ?";
+            data.push(districtId);
+        }
+
+        const [result] = await db.query(query, data);
         return result;
     },
     get: async (id) => {
