@@ -1,5 +1,6 @@
 // Models
 import CountyModel from "../models/countyModel.js";
+import DistrictModel from "../models/districtModel.js";
 
 // Utils
 import { createApiResponse } from "../utils/response.js";
@@ -35,6 +36,21 @@ export const listRecords = async (req, res) => {
 
 export const createRecord = async (req, res) => {
     try {
+
+        const {district_id} = req.validatedData;
+
+        // Find record
+        const district = await DistrictModel.get(district_id);
+
+        if (!district) {
+            return res.status(404).json(
+                createApiResponse("error", null, {
+                    code: "RECORD_NOT_FOUND",
+                    message: "O district_id fornecido não existe.",
+                })
+            );
+        }
+
         const newRecord = await CountyModel.create(req.validatedData);
         res.status(201).json(
             createApiResponse("success", {
@@ -55,6 +71,7 @@ export const createRecord = async (req, res) => {
 export const updateRecord = async (req, res) => {
     try {
         const { id } = req.params;
+        const {district_id} = req.validatedData;
 
         // Find record
         const record = await CountyModel.get(id);
@@ -64,6 +81,18 @@ export const updateRecord = async (req, res) => {
                 createApiResponse("error", null, {
                     code: "RECORD_NOT_FOUND",
                     message: "Registo não encontrado.",
+                })
+            );
+        }
+
+        // Find record
+        const district = await DistrictModel.get(district_id);
+
+        if (!district) {
+            return res.status(404).json(
+                createApiResponse("error", null, {
+                    code: "RECORD_NOT_FOUND",
+                    message: "O district_id fornecido não existe.",
                 })
             );
         }
