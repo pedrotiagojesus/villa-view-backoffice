@@ -141,6 +141,15 @@ export const createRecord = async (req, res) => {
             );
         }
 
+        if (county_id != parish.county_id) {
+            return res.status(404).json(
+                createApiResponse("error", null, {
+                    code: "RECORD_NOT_FOUND",
+                    message: "O parish_id fornecido não pretence ao county_id indicado.",
+                })
+            );
+        }
+
         const newRecord = await PropertyModel.create(req.validatedData);
         res.status(201).json(
             createApiResponse("success", {
@@ -219,6 +228,15 @@ export const updateRecord = async (req, res) => {
                 createApiResponse("error", null, {
                     code: "RECORD_NOT_FOUND",
                     message: "O parish_id fornecido não existe.",
+                })
+            );
+        }
+
+        if (county_id != parish.county_id) {
+            return res.status(404).json(
+                createApiResponse("error", null, {
+                    code: "RECORD_NOT_FOUND",
+                    message: "O parish_id fornecido não pretence ao county_id indicado.",
                 })
             );
         }
