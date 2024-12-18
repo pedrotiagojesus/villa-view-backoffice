@@ -65,6 +65,15 @@ export const createRecord = async (req, res) => {
             );
         }
 
+        if (district_id != county.district_id) {
+            return res.status(404).json(
+                createApiResponse("error", null, {
+                    code: "RECORD_NOT_FOUND",
+                    message: "O county_id fornecido não pretence ao district_id indicado.",
+                })
+            );
+        }
+
         const newRecord = await ParishModel.create(req.validatedData);
         res.status(201).json(
             createApiResponse("success", {
@@ -107,6 +116,15 @@ export const updateRecord = async (req, res) => {
                 createApiResponse("error", null, {
                     code: "RECORD_NOT_FOUND",
                     message: "O district_id fornecido não existe.",
+                })
+            );
+        }
+
+        if (district_id != county.district_id) {
+            return res.status(404).json(
+                createApiResponse("error", null, {
+                    code: "RECORD_NOT_FOUND",
+                    message: "O county_id fornecido não pretence ao district_id indicado.",
                 })
             );
         }
