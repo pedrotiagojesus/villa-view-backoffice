@@ -1,6 +1,7 @@
 // Models
 import PropertyModel from "../models/propertyModel.js";
 import DistrictModel from "../models/districtModel.js";
+import CountyModel from "../models/countyModel.js";
 
 // Utils
 import { createApiResponse } from "../utils/response.js";
@@ -92,8 +93,7 @@ export const listRecordsSearch = async (req, res) => {
 
 export const createRecord = async (req, res) => {
     try {
-
-        const {district_id} = req.validatedData;
+        const { district_id, county_id } = req.validatedData;
 
         // Find district
         const district = await DistrictModel.get(district_id);
@@ -103,6 +103,18 @@ export const createRecord = async (req, res) => {
                 createApiResponse("error", null, {
                     code: "RECORD_NOT_FOUND",
                     message: "O district_id fornecido não existe.",
+                })
+            );
+        }
+
+        // Find county
+        const county = await CountyModel.get(county_id);
+
+        if (!county) {
+            return res.status(404).json(
+                createApiResponse("error", null, {
+                    code: "RECORD_NOT_FOUND",
+                    message: "O county_id fornecido não existe.",
                 })
             );
         }
@@ -128,7 +140,7 @@ export const createRecord = async (req, res) => {
 export const updateRecord = async (req, res) => {
     try {
         const { id } = req.params;
-        const {district_id} = req.validatedData;
+        const { district_id, county_id } = req.validatedData;
 
         // Find record
         const record = await PropertyModel.get(id);
@@ -150,6 +162,18 @@ export const updateRecord = async (req, res) => {
                 createApiResponse("error", null, {
                     code: "RECORD_NOT_FOUND",
                     message: "O district_id fornecido não existe.",
+                })
+            );
+        }
+
+        // Find county
+        const county = await CountyModel.get(county_id);
+
+        if (!county) {
+            return res.status(404).json(
+                createApiResponse("error", null, {
+                    code: "RECORD_NOT_FOUND",
+                    message: "O county_id fornecido não existe.",
                 })
             );
         }
