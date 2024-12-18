@@ -118,7 +118,7 @@ export const truncate = async (req, res) => {
 export const loadData = async (req, res) => {
     try {
         for (const item of dataList) {
-            await PropertyStatusModel.create(item.name);
+            await PropertyStatusModel.create(item);
         }
 
         res.status(201).json(
