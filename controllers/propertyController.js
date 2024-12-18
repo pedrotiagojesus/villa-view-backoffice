@@ -9,6 +9,8 @@ import PropertyTypeModel from "../models/propertyTypeModel.js";
 
 // Utils
 import { createApiResponse } from "../utils/response.js";
+import { verifyRecordExists } from "../utils/verifyRecordExists.js";
+import ApiError from "../utils/ApiError.js";
 
 export const getRecord = async (req, res) => {
     try {
@@ -106,29 +108,33 @@ export const createRecord = async (req, res) => {
             property_type_id,
         } = req.validatedData;
 
-        // Find district
-        const district = await DistrictModel.get(district_id);
-
-        if (!district) {
-            return res.status(404).json(
-                createApiResponse("error", null, {
-                    code: "RECORD_NOT_FOUND",
-                    message: "O district_id fornecido não existe.",
-                })
-            );
-        }
-
-        // Find county
-        const county = await CountyModel.get(county_id);
-
-        if (!county) {
-            return res.status(404).json(
-                createApiResponse("error", null, {
-                    code: "RECORD_NOT_FOUND",
-                    message: "O county_id fornecido não existe.",
-                })
-            );
-        }
+        const [
+            district,
+            county,
+            parish,
+            property_goal,
+            property_status,
+            property_type,
+        ] = await Promise.all([
+            verifyRecordExists(DistrictModel, district_id, "district"),
+            verifyRecordExists(CountyModel, county_id, "county"),
+            verifyRecordExists(ParishModel, parish_id, "parish"),
+            verifyRecordExists(
+                PropertyGoalModel,
+                property_goal_id,
+                "property_goal"
+            ),
+            verifyRecordExists(
+                PropertyStatusModel,
+                property_status_id,
+                "property_status"
+            ),
+            verifyRecordExists(
+                PropertyTypeModel,
+                property_type_id,
+                "property_type"
+            ),
+        ]);
 
         if (district_id != county.district_id) {
             return res.status(404).json(
@@ -136,18 +142,6 @@ export const createRecord = async (req, res) => {
                     code: "RECORD_NOT_FOUND",
                     message:
                         "O county_id fornecido não pretence ao district_id indicado.",
-                })
-            );
-        }
-
-        // Find parish
-        const parish = await ParishModel.get(parish_id);
-
-        if (!parish) {
-            return res.status(404).json(
-                createApiResponse("error", null, {
-                    code: "RECORD_NOT_FOUND",
-                    message: "O parish_id fornecido não existe.",
                 })
             );
         }
@@ -162,44 +156,6 @@ export const createRecord = async (req, res) => {
             );
         }
 
-        // Find property goal
-        const property_goal = await PropertyGoalModel.get(property_goal_id);
-
-        if (!property_goal) {
-            return res.status(404).json(
-                createApiResponse("error", null, {
-                    code: "RECORD_NOT_FOUND",
-                    message: "O property_goal_id fornecido não existe.",
-                })
-            );
-        }
-
-        // Find property status
-        const property_status = await PropertyStatusModel.get(
-            property_status_id
-        );
-
-        if (!property_status) {
-            return res.status(404).json(
-                createApiResponse("error", null, {
-                    code: "RECORD_NOT_FOUND",
-                    message: "O property_status_id fornecido não existe.",
-                })
-            );
-        }
-
-        // Find property type
-        const property_type = await PropertyTypeModel.get(property_type_id);
-
-        if (!property_type) {
-            return res.status(404).json(
-                createApiResponse("error", null, {
-                    code: "RECORD_NOT_FOUND",
-                    message: "O property_type_id fornecido não existe.",
-                })
-            );
-        }
-
         const newRecord = await PropertyModel.create(req.validatedData);
         res.status(201).json(
             createApiResponse("success", {
@@ -208,7 +164,15 @@ export const createRecord = async (req, res) => {
             })
         );
     } catch (error) {
-        console.log(error);
+        if (error instanceof ApiError) {
+            return res.status(error.statusCode).json(
+                createApiResponse("error", null, {
+                    code: error.code,
+                    message: error.message,
+                })
+            );
+        }
+
         res.status(500).json(
             createApiResponse("error", null, {
                 code: "DB_CONN_ERROR",
@@ -244,29 +208,33 @@ export const updateRecord = async (req, res) => {
 
         const mergedData = { ...record, ...req.validatedData };
 
-        // Find district
-        const district = await DistrictModel.get(district_id);
-
-        if (!district) {
-            return res.status(404).json(
-                createApiResponse("error", null, {
-                    code: "RECORD_NOT_FOUND",
-                    message: "O district_id fornecido não existe.",
-                })
-            );
-        }
-
-        // Find county
-        const county = await CountyModel.get(county_id);
-
-        if (!county) {
-            return res.status(404).json(
-                createApiResponse("error", null, {
-                    code: "RECORD_NOT_FOUND",
-                    message: "O county_id fornecido não existe.",
-                })
-            );
-        }
+        const [
+            district,
+            county,
+            parish,
+            property_goal,
+            property_status,
+            property_type,
+        ] = await Promise.all([
+            verifyRecordExists(DistrictModel, district_id, "district"),
+            verifyRecordExists(CountyModel, county_id, "county"),
+            verifyRecordExists(ParishModel, parish_id, "parish"),
+            verifyRecordExists(
+                PropertyGoalModel,
+                property_goal_id,
+                "property_goal"
+            ),
+            verifyRecordExists(
+                PropertyStatusModel,
+                property_status_id,
+                "property_status"
+            ),
+            verifyRecordExists(
+                PropertyTypeModel,
+                property_type_id,
+                "property_type"
+            ),
+        ]);
 
         if (district_id != county.district_id) {
             return res.status(404).json(
@@ -274,18 +242,6 @@ export const updateRecord = async (req, res) => {
                     code: "RECORD_NOT_FOUND",
                     message:
                         "O county_id fornecido não pretence ao district_id indicado.",
-                })
-            );
-        }
-
-        // Find county
-        const parish = await ParishModel.get(parish_id);
-
-        if (!parish) {
-            return res.status(404).json(
-                createApiResponse("error", null, {
-                    code: "RECORD_NOT_FOUND",
-                    message: "O parish_id fornecido não existe.",
                 })
             );
         }
@@ -300,44 +256,6 @@ export const updateRecord = async (req, res) => {
             );
         }
 
-        // Find property goal
-        const property_goal = await PropertyGoalModel.get(property_goal_id);
-
-        if (!property_goal) {
-            return res.status(404).json(
-                createApiResponse("error", null, {
-                    code: "RECORD_NOT_FOUND",
-                    message: "O property_goal_id fornecido não existe.",
-                })
-            );
-        }
-
-        // Find property status
-        const property_status = await PropertyStatusModel.get(
-            property_status_id
-        );
-
-        if (!property_status) {
-            return res.status(404).json(
-                createApiResponse("error", null, {
-                    code: "RECORD_NOT_FOUND",
-                    message: "O property_status_id fornecido não existe.",
-                })
-            );
-        }
-
-        // Find property type
-        const property_type = await PropertyTypeModel.get(property_type_id);
-
-        if (!property_type) {
-            return res.status(404).json(
-                createApiResponse("error", null, {
-                    code: "RECORD_NOT_FOUND",
-                    message: "O property_type_id fornecido não existe.",
-                })
-            );
-        }
-
         await PropertyModel.update(id, mergedData);
         res.status(201).json(
             createApiResponse("success", {
@@ -346,7 +264,15 @@ export const updateRecord = async (req, res) => {
             })
         );
     } catch (error) {
-        console.log(error);
+        if (error instanceof ApiError) {
+            return res.status(error.statusCode).json(
+                createApiResponse("error", null, {
+                    code: error.code,
+                    message: error.message,
+                })
+            );
+        }
+
         res.status(500).json(
             createApiResponse("error", null, {
                 code: "DB_CONN_ERROR",
