@@ -9,15 +9,7 @@ import { createApiResponse } from "../utils/response.js";
 import dataList from "../data/county.json" assert { type: "json" };
 
 export const listRecords = async (req, res) => {
-    const districtId = req.query.districtId;
-
-    if (!districtId) {
-        throw new ApiError(
-            400,
-            `O parâmetro districtId é obrigatório.`,
-            "PARAM_MISS"
-        );
-    }
+    const districtId = req.query.districtId ?? null;
 
     try {
         const data = await CountyModel.getAll(districtId);
