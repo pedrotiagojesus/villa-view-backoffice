@@ -13,64 +13,35 @@ export const listRecords = async (req, res) => {
     const countyId = req.query.countyId;
 
     if (!countyId) {
-        res.status(400).json(
-            createApiResponse("error", null, {
-                code: "PARAM_MISS",
-                message: "O parâmetro countyId é obrigatório.",
-            })
+        throw new ApiError(
+            400,
+            `O parâmetro countyId é obrigatório.`,
+            "PARAM_MISS"
         );
-        return;
     }
 
     try {
         const data = await ParishModel.getAll(countyId);
         res.status(200).json(createApiResponse("success", data));
     } catch (error) {
-        res.status(500).json(
-            createApiResponse("error", null, {
-                code: "DB_CONN_ERROR",
-                message: error.message,
-            })
-        );
+        next(error);
     }
 };
 
 export const createRecord = async (req, res) => {
-
     try {
+        const { district_id, county_id } = req.validatedData;
 
-        const {district_id, county_id} = req.validatedData;
-
-        // Find district
-        const district = await DistrictModel.get(district_id);
-
-        if (!district) {
-            return res.status(404).json(
-                createApiResponse("error", null, {
-                    code: "RECORD_NOT_FOUND",
-                    message: "O district_id fornecido não existe.",
-                })
-            );
-        }
-
-        // Find county
-        const county = await CountyModel.get(county_id);
-
-        if (!county) {
-            return res.status(404).json(
-                createApiResponse("error", null, {
-                    code: "RECORD_NOT_FOUND",
-                    message: "O county_id fornecido não existe.",
-                })
-            );
-        }
+        const [district, county] = await Promise.all([
+            verifyRecordExists(DistrictModel, district_id, "district"),
+            verifyRecordExists(CountyModel, county_id, "county"),
+        ]);
 
         if (district_id != county.district_id) {
-            return res.status(404).json(
-                createApiResponse("error", null, {
-                    code: "RECORD_NOT_FOUND",
-                    message: "O county_id fornecido não pretence ao district_id indicado.",
-                })
+            throw new ApiError(
+                400,
+                `O county_id fornecido não pretence ao district_id indicado.`,
+                "RECORD_NOT_FOUND"
             );
         }
 
@@ -82,62 +53,36 @@ export const createRecord = async (req, res) => {
             })
         );
     } catch (error) {
-        res.status(500).json(
-            createApiResponse("error", null, {
-                code: "DB_CONN_ERROR",
-                message: error.message,
-            })
-        );
+        next(error);
     }
 };
 
 export const updateRecord = async (req, res) => {
     try {
         const { id } = req.params;
-        const {district_id, county_id} = req.validatedData;
+        const { district_id, county_id } = req.validatedData;
 
         // Find record
         const record = await ParishModel.get(id);
 
         if (!record) {
-            return res.status(404).json(
-                createApiResponse("error", null, {
-                    code: "RECORD_NOT_FOUND",
-                    message: "Registo não encontrado.",
-                })
+            throw new ApiError(
+                404,
+                `Registo não encontrado.`,
+                "RECORD_NOT_FOUND"
             );
         }
 
-        // Find district
-        const district = await DistrictModel.get(district_id);
-
-        if (!district) {
-            return res.status(404).json(
-                createApiResponse("error", null, {
-                    code: "RECORD_NOT_FOUND",
-                    message: "O district_id fornecido não existe.",
-                })
-            );
-        }
+        const [district, county] = await Promise.all([
+            verifyRecordExists(DistrictModel, district_id, "district"),
+            verifyRecordExists(CountyModel, county_id, "county"),
+        ]);
 
         if (district_id != county.district_id) {
-            return res.status(404).json(
-                createApiResponse("error", null, {
-                    code: "RECORD_NOT_FOUND",
-                    message: "O county_id fornecido não pretence ao district_id indicado.",
-                })
-            );
-        }
-
-        // Find county
-        const county = await CountyModel.get(county_id);
-
-        if (!county) {
-            return res.status(404).json(
-                createApiResponse("error", null, {
-                    code: "RECORD_NOT_FOUND",
-                    message: "O county_id fornecido não existe.",
-                })
+            throw new ApiError(
+                400,
+                `O county_id fornecido não pretence ao district_id indicado.`,
+                "RECORD_NOT_FOUND"
             );
         }
 
@@ -149,12 +94,7 @@ export const updateRecord = async (req, res) => {
             })
         );
     } catch (error) {
-        res.status(500).json(
-            createApiResponse("error", null, {
-                code: "DB_CONN_ERROR",
-                message: error.message,
-            })
-        );
+        next(error);
     }
 };
 
@@ -166,23 +106,17 @@ export const deleteRecord = async (req, res) => {
         const record = await ParishModel.get(id);
 
         if (!record) {
-            return res.status(404).json(
-                createApiResponse("error", null, {
-                    code: "RECORD_NOT_FOUND",
-                    message: "Registo não encontrado.",
-                })
+            throw new ApiError(
+                400,
+                `Registo não encontrado.`,
+                "RECORD_NOT_FOUND"
             );
         }
 
         await ParishModel.delete(id);
         res.status(200).json(createApiResponse("success"));
     } catch (error) {
-        res.status(500).json(
-            createApiResponse("error", null, {
-                code: "DB_CONN_ERROR",
-                message: error.message,
-            })
-        );
+        next(error);
     }
 };
 
@@ -191,12 +125,7 @@ export const truncate = async (req, res) => {
         const truncate = await ParishModel.truncate();
         res.status(200).json(createApiResponse("success", truncate));
     } catch (error) {
-        res.status(500).json(
-            createApiResponse("error", null, {
-                code: "DB_CONN_ERROR",
-                message: error.message,
-            })
-        );
+        next(error);
     }
 };
 
@@ -210,11 +139,6 @@ export const loadData = async (req, res) => {
             createApiResponse("success", "List loaded sucessfuly.")
         );
     } catch (error) {
-        res.status(500).json(
-            createApiResponse("error", null, {
-                code: "DB_CONN_ERROR",
-                message: error.message,
-            })
-        );
+        next(error);
     }
 };

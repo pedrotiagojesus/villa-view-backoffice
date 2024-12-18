@@ -12,7 +12,7 @@ import { createApiResponse } from "../utils/response.js";
 import { verifyRecordExists } from "../utils/verifyRecordExists.js";
 import ApiError from "../utils/ApiError.js";
 
-export const getRecord = async (req, res) => {
+export const getRecord = async (req, res, next) => {
     try {
         const { id } = req.params;
 
@@ -20,22 +20,16 @@ export const getRecord = async (req, res) => {
         const record = await PropertyModel.get(id);
 
         if (!record) {
-            return res.status(404).json(
-                createApiResponse("error", null, {
-                    code: "RECORD_NOT_FOUND",
-                    message: "Registo não encontrado.",
-                })
+            throw new ApiError(
+                404,
+                `Registo não encontrado.`,
+                "RECORD_NOT_FOUND"
             );
         }
 
         res.status(200).json(createApiResponse("success", record));
     } catch (error) {
-        res.status(500).json(
-            createApiResponse("error", null, {
-                code: "DB_CONN_ERROR",
-                message: error.message,
-            })
-        );
+        next(error);
     }
 };
 
@@ -44,12 +38,7 @@ export const listRecords = async (req, res) => {
         const properties = await PropertyModel.getAll();
         res.status(200).json(createApiResponse("success", properties));
     } catch (error) {
-        res.status(500).json(
-            createApiResponse("error", null, {
-                code: "DB_CONN_ERROR",
-                message: error.message,
-            })
-        );
+        next(error);
     }
 };
 
@@ -58,12 +47,7 @@ export const listRecordsHighlight = async (req, res) => {
         const properties = await PropertyModel.getAll(true);
         res.status(200).json(createApiResponse("success", properties));
     } catch (error) {
-        res.status(500).json(
-            createApiResponse("error", null, {
-                code: "DB_CONN_ERROR",
-                message: error.message,
-            })
-        );
+        next(error);
     }
 };
 
@@ -93,7 +77,7 @@ export const listRecordsSearch = async (req, res) => {
         );
         res.status(200).json(createApiResponse("success", properties));
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        next(error);
     }
 };
 
@@ -137,22 +121,18 @@ export const createRecord = async (req, res) => {
         ]);
 
         if (district_id != county.district_id) {
-            return res.status(404).json(
-                createApiResponse("error", null, {
-                    code: "RECORD_NOT_FOUND",
-                    message:
-                        "O county_id fornecido não pretence ao district_id indicado.",
-                })
+            throw new ApiError(
+                400,
+                `O county_id fornecido não pretence ao district_id indicado.`,
+                "RECORD_NOT_FOUND"
             );
         }
 
         if (county_id != parish.county_id) {
-            return res.status(404).json(
-                createApiResponse("error", null, {
-                    code: "RECORD_NOT_FOUND",
-                    message:
-                        "O parish_id fornecido não pretence ao county_id indicado.",
-                })
+            throw new ApiError(
+                400,
+                `O parish_id fornecido não pretence ao county_id indicado.`,
+                "RECORD_NOT_FOUND"
             );
         }
 
@@ -164,21 +144,7 @@ export const createRecord = async (req, res) => {
             })
         );
     } catch (error) {
-        if (error instanceof ApiError) {
-            return res.status(error.statusCode).json(
-                createApiResponse("error", null, {
-                    code: error.code,
-                    message: error.message,
-                })
-            );
-        }
-
-        res.status(500).json(
-            createApiResponse("error", null, {
-                code: "DB_CONN_ERROR",
-                message: error.message,
-            })
-        );
+        next(error);
     }
 };
 
@@ -198,11 +164,10 @@ export const updateRecord = async (req, res) => {
         const record = await PropertyModel.get(id);
 
         if (!record) {
-            return res.status(404).json(
-                createApiResponse("error", null, {
-                    code: "RECORD_NOT_FOUND",
-                    message: "Registo não encontrado.",
-                })
+            throw new ApiError(
+                404,
+                `Registo não encontrado.`,
+                "RECORD_NOT_FOUND"
             );
         }
 
@@ -237,22 +202,18 @@ export const updateRecord = async (req, res) => {
         ]);
 
         if (district_id != county.district_id) {
-            return res.status(404).json(
-                createApiResponse("error", null, {
-                    code: "RECORD_NOT_FOUND",
-                    message:
-                        "O county_id fornecido não pretence ao district_id indicado.",
-                })
+            throw new ApiError(
+                400,
+                `O county_id fornecido não pretence ao district_id indicado.`,
+                "RECORD_NOT_FOUND"
             );
         }
 
         if (county_id != parish.county_id) {
-            return res.status(404).json(
-                createApiResponse("error", null, {
-                    code: "RECORD_NOT_FOUND",
-                    message:
-                        "O parish_id fornecido não pretence ao county_id indicado.",
-                })
+            throw new ApiError(
+                400,
+                `O parish_id fornecido não pretence ao county_id indicado.`,
+                "RECORD_NOT_FOUND"
             );
         }
 
@@ -264,21 +225,7 @@ export const updateRecord = async (req, res) => {
             })
         );
     } catch (error) {
-        if (error instanceof ApiError) {
-            return res.status(error.statusCode).json(
-                createApiResponse("error", null, {
-                    code: error.code,
-                    message: error.message,
-                })
-            );
-        }
-
-        res.status(500).json(
-            createApiResponse("error", null, {
-                code: "DB_CONN_ERROR",
-                message: error.message,
-            })
-        );
+        next(error);
     }
 };
 
@@ -290,23 +237,17 @@ export const deleteRecord = async (req, res) => {
         const record = await PropertyModel.get(id);
 
         if (!record) {
-            return res.status(404).json(
-                createApiResponse("error", null, {
-                    code: "RECORD_NOT_FOUND",
-                    message: "Registo não encontrado.",
-                })
+            throw new ApiError(
+                404,
+                `Registo não encontrado.`,
+                "RECORD_NOT_FOUND"
             );
         }
 
         await PropertyModel.delete(id);
         res.status(200).json(createApiResponse("success"));
     } catch (error) {
-        res.status(500).json(
-            createApiResponse("error", null, {
-                code: "DB_CONN_ERROR",
-                message: error.message,
-            })
-        );
+        next(error);
     }
 };
 
@@ -317,6 +258,6 @@ export const getProperty = async (req, res) => {
         const property = await PropertyModel.get(propertyId);
         res.status(200).json(property);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        next(error);
     }
 };

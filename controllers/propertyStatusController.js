@@ -12,12 +12,7 @@ export const listRecords = async (req, res) => {
         const PropertyStatus = await PropertyStatusModel.getAll();
         res.status(200).json(createApiResponse("success", PropertyStatus));
     } catch (error) {
-        res.status(500).json(
-            createApiResponse("error", null, {
-                code: "DB_CONN_ERROR",
-                message: error.message,
-            })
-        );
+        next(error);
     }
 };
 
@@ -31,12 +26,7 @@ export const createRecord = async (req, res) => {
             })
         );
     } catch (error) {
-        res.status(500).json(
-            createApiResponse("error", null, {
-                code: "DB_CONN_ERROR",
-                message: error.message,
-            })
-        );
+        next(error);
     }
 };
 
@@ -48,11 +38,10 @@ export const updateRecord = async (req, res) => {
         const record = await PropertyStatusModel.get(id);
 
         if (!record) {
-            return res.status(404).json(
-                createApiResponse("error", null, {
-                    code: "RECORD_NOT_FOUND",
-                    message: "Registo não encontrado.",
-                })
+            throw new ApiError(
+                404,
+                `Registo não encontrado.`,
+                "RECORD_NOT_FOUND"
             );
         }
 
@@ -64,12 +53,7 @@ export const updateRecord = async (req, res) => {
             })
         );
     } catch (error) {
-        res.status(500).json(
-            createApiResponse("error", null, {
-                code: "DB_CONN_ERROR",
-                message: error.message,
-            })
-        );
+        next(error);
     }
 };
 
@@ -81,23 +65,17 @@ export const deleteRecord = async (req, res) => {
         const record = await PropertyStatusModel.get(id);
 
         if (!record) {
-            return res.status(404).json(
-                createApiResponse("error", null, {
-                    code: "RECORD_NOT_FOUND",
-                    message: "Registo não encontrado.",
-                })
+            throw new ApiError(
+                404,
+                `Registo não encontrado.`,
+                "RECORD_NOT_FOUND"
             );
         }
 
         await PropertyStatusModel.delete(id);
         res.status(200).json(createApiResponse("success"));
     } catch (error) {
-        res.status(500).json(
-            createApiResponse("error", null, {
-                code: "DB_CONN_ERROR",
-                message: error.message,
-            })
-        );
+        next(error);
     }
 };
 
@@ -106,12 +84,7 @@ export const truncate = async (req, res) => {
         const truncate = await PropertyStatusModel.truncate();
         res.status(200).json(createApiResponse("success", truncate));
     } catch (error) {
-        res.status(500).json(
-            createApiResponse("error", null, {
-                code: "DB_CONN_ERROR",
-                message: error.message,
-            })
-        );
+        next(error);
     }
 };
 
@@ -125,11 +98,6 @@ export const loadData = async (req, res) => {
             createApiResponse("success", "List loaded sucessfuly.")
         );
     } catch (error) {
-        res.status(500).json(
-            createApiResponse("error", null, {
-                code: "DB_CONN_ERROR",
-                message: error.message,
-            })
-        );
+        next(error);
     }
 };

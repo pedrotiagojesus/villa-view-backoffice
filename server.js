@@ -14,6 +14,9 @@ import propertyStatusRoutes from "./routes/property_status.js";
 import propertyTypeRoutes from "./routes/property_type.js";
 import propertyRoutes from "./routes/property.js";
 
+// middleware
+import errorHandler from "./middleware/errorHandler.js";
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -29,6 +32,9 @@ app.use("/property-goal", propertyGoalRoutes);
 app.use("/property-status", propertyStatusRoutes);
 app.use("/property-type", propertyTypeRoutes);
 app.use("/property", propertyRoutes);
+
+// Middleware de erro centralizado
+app.use(errorHandler);
 
 const PORT = 3000;
 app.listen(PORT, () =>

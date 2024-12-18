@@ -11,11 +11,6 @@ export const connectionDb = async (req, res) => {
             createApiResponse("success", "Conectado ao MySQL!")
         );
     } catch (error) {
-        res.status(500).json(
-            createApiResponse("error", null, {
-                code: "DB_CONN_ERROR",
-                message: error.message,
-            })
-        );
+        next(error);
     }
 };
