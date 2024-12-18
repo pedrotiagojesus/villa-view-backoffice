@@ -3,6 +3,7 @@ import PropertyModel from "../models/propertyModel.js";
 import DistrictModel from "../models/districtModel.js";
 import CountyModel from "../models/countyModel.js";
 import ParishModel from "../models/parishModel.js";
+import PropertyGoalModel from "../models/propertyGoalModel.js";
 
 // Utils
 import { createApiResponse } from "../utils/response.js";
@@ -94,7 +95,7 @@ export const listRecordsSearch = async (req, res) => {
 
 export const createRecord = async (req, res) => {
     try {
-        const { district_id, county_id, parish_id } = req.validatedData;
+        const { district_id, county_id, parish_id, property_goal_id } = req.validatedData;
 
         // Find district
         const district = await DistrictModel.get(district_id);
@@ -129,7 +130,7 @@ export const createRecord = async (req, res) => {
             );
         }
 
-        // Find county
+        // Find parish
         const parish = await ParishModel.get(parish_id);
 
         if (!parish) {
@@ -146,6 +147,18 @@ export const createRecord = async (req, res) => {
                 createApiResponse("error", null, {
                     code: "RECORD_NOT_FOUND",
                     message: "O parish_id fornecido não pretence ao county_id indicado.",
+                })
+            );
+        }
+
+        // Find property goal
+        const property_goal = await PropertyGoalModel.get(property_goal_id);
+
+        if (!property_goal) {
+            return res.status(404).json(
+                createApiResponse("error", null, {
+                    code: "RECORD_NOT_FOUND",
+                    message: "O property_goal_id fornecido não existe.",
                 })
             );
         }
@@ -171,7 +184,7 @@ export const createRecord = async (req, res) => {
 export const updateRecord = async (req, res) => {
     try {
         const { id } = req.params;
-        const { district_id, county_id, parish_id } = req.validatedData;
+        const { district_id, county_id, parish_id, property_goal_id } = req.validatedData;
 
         // Find record
         const record = await PropertyModel.get(id);
@@ -237,6 +250,18 @@ export const updateRecord = async (req, res) => {
                 createApiResponse("error", null, {
                     code: "RECORD_NOT_FOUND",
                     message: "O parish_id fornecido não pretence ao county_id indicado.",
+                })
+            );
+        }
+
+        // Find property goal
+        const property_goal = await PropertyGoalModel.get(property_goal_id);
+
+        if (!property_goal) {
+            return res.status(404).json(
+                createApiResponse("error", null, {
+                    code: "RECORD_NOT_FOUND",
+                    message: "O property_goal_id fornecido não existe.",
                 })
             );
         }
