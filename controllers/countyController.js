@@ -39,7 +39,7 @@ export const createRecord = async (req, res) => {
 
         const {district_id} = req.validatedData;
 
-        // Find record
+        // Find district
         const district = await DistrictModel.get(district_id);
 
         if (!district) {
@@ -85,7 +85,7 @@ export const updateRecord = async (req, res) => {
             );
         }
 
-        // Find record
+        // Find district
         const district = await DistrictModel.get(district_id);
 
         if (!district) {

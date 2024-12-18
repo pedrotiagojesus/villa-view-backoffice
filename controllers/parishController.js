@@ -1,6 +1,11 @@
+// Models
 import ParishModel from "../models/parishModel.js";
+import DistrictModel from "../models/districtModel.js";
+
+// Utils
 import { createApiResponse } from "../utils/response.js";
 
+// Data
 import dataList from "../data/parish.json" assert { type: "json" };
 
 export const listRecords = async (req, res) => {
@@ -32,6 +37,21 @@ export const listRecords = async (req, res) => {
 export const createRecord = async (req, res) => {
 
     try {
+
+        const {district_id} = req.validatedData;
+
+        // Find district
+        const district = await DistrictModel.get(district_id);
+
+        if (!district) {
+            return res.status(404).json(
+                createApiResponse("error", null, {
+                    code: "RECORD_NOT_FOUND",
+                    message: "O district_id fornecido não existe.",
+                })
+            );
+        }
+
         const newRecord = await ParishModel.create(req.validatedData);
         res.status(201).json(
             createApiResponse("success", {
@@ -61,6 +81,20 @@ export const updateRecord = async (req, res) => {
                 createApiResponse("error", null, {
                     code: "RECORD_NOT_FOUND",
                     message: "Registo não encontrado.",
+                })
+            );
+        }
+
+        const {district_id} = req.validatedData;
+
+        // Find district
+        const district = await DistrictModel.get(district_id);
+
+        if (!district) {
+            return res.status(404).json(
+                createApiResponse("error", null, {
+                    code: "RECORD_NOT_FOUND",
+                    message: "O district_id fornecido não existe.",
                 })
             );
         }
