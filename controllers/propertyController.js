@@ -119,6 +119,15 @@ export const createRecord = async (req, res) => {
             );
         }
 
+        if (district_id != county.district_id) {
+            return res.status(404).json(
+                createApiResponse("error", null, {
+                    code: "RECORD_NOT_FOUND",
+                    message: "O county_id fornecido não pretence ao district_id indicado.",
+                })
+            );
+        }
+
         const newRecord = await PropertyModel.create(req.validatedData);
         res.status(201).json(
             createApiResponse("success", {
@@ -154,6 +163,8 @@ export const updateRecord = async (req, res) => {
             );
         }
 
+        const mergedData = { ...record, ...req.validatedData };
+
         // Find district
         const district = await DistrictModel.get(district_id);
 
@@ -178,7 +189,14 @@ export const updateRecord = async (req, res) => {
             );
         }
 
-        const mergedData = { ...record, ...req.validatedData };
+        if (district_id != county.district_id) {
+            return res.status(404).json(
+                createApiResponse("error", null, {
+                    code: "RECORD_NOT_FOUND",
+                    message: "O county_id fornecido não pretence ao district_id indicado.",
+                })
+            );
+        }
 
         await PropertyModel.update(id, mergedData);
         res.status(201).json(
