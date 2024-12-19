@@ -7,6 +7,7 @@ const validate = (schema) => {
         });
 
         if (error) {
+            // TODO: Colocar o erro a fazer to throw ErrorApi
             return res.status(400).json(
                 createApiResponse("error", null, {
                     code: "DNF",

@@ -27,6 +27,7 @@ const createPropertySchema = Joi.object({
     is_visible: Joi.boolean().default(true),
     is_highlight: Joi.boolean().default(false),
 });
+// Todo: Colocar o cover_image como facultativo
 
 const updatePropertySchema = Joi.object({
     reference: Joi.string().optional(),

@@ -105,6 +105,9 @@ export const deleteRecord = async (req, res) => {
             );
         }
 
+        // TODO: Arranjar maneira de fazer um soft delete e um hard delete
+        // TODO: Garantir que o primary key desta tabela não está em uso noutras tabelas
+
         await ParishModel.delete(id);
         res.status(200).json(createApiResponse("success"));
     } catch (error) {

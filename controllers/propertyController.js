@@ -136,6 +136,8 @@ export const createRecord = async (req, res) => {
             );
         }
 
+        // TODO: Garantir que não está a adicionar um registo com o reference duplicado
+
         const newRecord = await PropertyModel.create(req.validatedData);
         res.status(201).json(
             createApiResponse("success", {
@@ -217,6 +219,8 @@ export const updateRecord = async (req, res) => {
             );
         }
 
+        // TODO: Garantir que não está a editar um registo com o reference duplicado
+
         await PropertyModel.update(id, mergedData);
         res.status(201).json(
             createApiResponse("success", {
@@ -243,6 +247,8 @@ export const deleteRecord = async (req, res) => {
                 "RECORD_NOT_FOUND"
             );
         }
+
+        // TODO: Arranjar maneira de fazer um soft delete e um hard delete
 
         await PropertyModel.delete(id);
         res.status(200).json(createApiResponse("success"));

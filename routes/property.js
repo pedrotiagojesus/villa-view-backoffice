@@ -30,4 +30,6 @@ router.post("/", validate(createPropertySchema), createRecord);
 router.put("/:id", validate(updatePropertySchema), updateRecord);
 router.delete("/:id", deleteRecord);
 
+// TODO: Criar rota para adicionar imagem de capa
+
 export default router;
