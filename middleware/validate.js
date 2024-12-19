@@ -1,4 +1,5 @@
-import { createApiResponse } from "../utils/response.js";
+// Utils
+import ApiError from "../utils/ApiError.js";
 
 const validate = (schema) => {
     return (req, res, next) => {
@@ -7,15 +8,11 @@ const validate = (schema) => {
         });
 
         if (error) {
-            // TODO: Colocar o erro a fazer to throw ErrorApi
-            return res.status(400).json(
-                createApiResponse("error", null, {
-                    code: "DNF",
-                    message: "Validation error",
-                    details: error.details
-                })
+            throw new ApiError(
+                400,
+                error.details.map((d) => d.message).join(", "),
+                "MISSING_FIELDS"
             );
-
         }
 
         req.validatedData = value;
