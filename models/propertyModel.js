@@ -5,7 +5,7 @@ const table = "property";
 export default {
     get: async (id) => {
         const [rows] = await db.query(
-            "SELECT * FROM `property` WHERE `property_id` = ? AND is_visible = ?",
+            "SELECT * FROM `property` WHERE `property_id` = ? AND is_visible = ? `deleted_at` IS NULL",
             [id, true]
         );
         const row = rows.length > 0 ? rows[0] : null;
@@ -23,7 +23,8 @@ export default {
         property_status_id,
         room
     ) => {
-        let query = "SELECT * FROM property WHERE is_visible = ?";
+        let query =
+            "SELECT * FROM property WHERE is_visible = ? `deleted_at` IS NULL";
         let data = [true];
 
         if (typeof is_highlight == "boolean") {
@@ -241,7 +242,14 @@ export default {
         );
         return result;
     },
-    delete: async (id) => {
+    softDelete: async (id) => {
+        const [result] = await db.query(
+            "UPDATE `property` SET `deleted_at` = CURRENT_TIMESTAMP WHERE `property_id` = ?",
+            [id]
+        );
+        return result;
+    },
+    hardDelete: async (id) => {
         const [result] = await db.query(
             "DELETE FROM `property` WHERE `property_id` = ?",
             [id]

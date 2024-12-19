@@ -248,7 +248,13 @@ export const deleteRecord = async (req, res, next) => {
             );
         }
 
-        // TODO: Arranjar maneira de fazer um soft delete e um hard delete
+        const deleteType = req.header("X-Delete-Type") ?? "soft";
+
+        if (deleteType === "soft") {
+            await PropertyModel.softDelete(id);
+        } else {
+            await PropertyModel.hardDelete(id);
+        }
 
         await PropertyModel.delete(id);
         res.status(200).json(createApiResponse("success"));
