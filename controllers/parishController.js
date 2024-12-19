@@ -106,10 +106,16 @@ export const deleteRecord = async (req, res, next) => {
             );
         }
 
-        // TODO: Arranjar maneira de fazer um soft delete e um hard delete
+        const deleteType = req.header("X-Delete-Type") ?? "soft";
+
+        if (deleteType === "soft") {
+            await ParishModel.softDelete(id);
+        } else {
+            await ParishModel.hardDelete(id);
+        }
+
         // TODO: Garantir que o primary key desta tabela não está em uso noutras tabelas
 
-        await ParishModel.delete(id);
         res.status(200).json(createApiResponse("success"));
     } catch (error) {
         next(error);
