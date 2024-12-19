@@ -4,7 +4,7 @@ import DbModel from "../models/dbModel.js";
 // Utils
 import { createApiResponse } from "../utils/response.js";
 
-export const connectionDb = async (req, res) => {
+export const connectionDb = async (req, res, next) => {
     try {
         await DbModel.connection();
         res.status(200).json(

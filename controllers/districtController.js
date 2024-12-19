@@ -8,7 +8,7 @@ import ApiError from "../utils/ApiError.js";
 // Data
 import dataList from "../data/distric.json" assert { type: "json" };
 
-export const listRecords = async (req, res) => {
+export const listRecords = async (req, res, next) => {
     try {
         const district = await DistrictModel.getAll();
         res.status(200).json(createApiResponse("success", district));
@@ -17,7 +17,7 @@ export const listRecords = async (req, res) => {
     }
 };
 
-export const createRecord = async (req, res) => {
+export const createRecord = async (req, res, next) => {
     try {
         const newRecord = await DistrictModel.create(req.validatedData);
 
@@ -32,7 +32,7 @@ export const createRecord = async (req, res) => {
     }
 };
 
-export const updateRecord = async (req, res) => {
+export const updateRecord = async (req, res, next) => {
     try {
         const { id } = req.params;
 
@@ -59,7 +59,7 @@ export const updateRecord = async (req, res) => {
     }
 };
 
-export const deleteRecord = async (req, res) => {
+export const deleteRecord = async (req, res, next) => {
     try {
         const { id } = req.params;
 
@@ -84,7 +84,7 @@ export const deleteRecord = async (req, res) => {
     }
 };
 
-export const truncate = async (req, res) => {
+export const truncate = async (req, res, next) => {
     try {
         const truncate = await DistrictModel.truncate();
         res.status(200).json(createApiResponse("success", truncate));
@@ -93,7 +93,7 @@ export const truncate = async (req, res) => {
     }
 };
 
-export const loadData = async (req, res) => {
+export const loadData = async (req, res, next) => {
     try {
         for (const item of dataList) {
             await DistrictModel.create(item);

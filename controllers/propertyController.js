@@ -33,7 +33,7 @@ export const getRecord = async (req, res, next) => {
     }
 };
 
-export const listRecords = async (req, res) => {
+export const listRecords = async (req, res, next) => {
     try {
         const properties = await PropertyModel.getAll();
         res.status(200).json(createApiResponse("success", properties));
@@ -42,7 +42,7 @@ export const listRecords = async (req, res) => {
     }
 };
 
-export const listRecordsHighlight = async (req, res) => {
+export const listRecordsHighlight = async (req, res, next) => {
     try {
         const properties = await PropertyModel.getAll(true);
         res.status(200).json(createApiResponse("success", properties));
@@ -51,7 +51,7 @@ export const listRecordsHighlight = async (req, res) => {
     }
 };
 
-export const listRecordsSearch = async (req, res) => {
+export const listRecordsSearch = async (req, res, next) => {
     const price_min = req.query.price_min;
     const price_max = req.query.price_max;
     const district_id = req.query.district_id;
@@ -81,7 +81,7 @@ export const listRecordsSearch = async (req, res) => {
     }
 };
 
-export const createRecord = async (req, res) => {
+export const createRecord = async (req, res, next) => {
     try {
         const {
             district_id,
@@ -150,7 +150,7 @@ export const createRecord = async (req, res) => {
     }
 };
 
-export const updateRecord = async (req, res) => {
+export const updateRecord = async (req, res, next) => {
     try {
         const { id } = req.params;
         const {
@@ -233,7 +233,7 @@ export const updateRecord = async (req, res) => {
     }
 };
 
-export const deleteRecord = async (req, res) => {
+export const deleteRecord = async (req, res, next) => {
     try {
         const { id } = req.params;
 
@@ -257,7 +257,7 @@ export const deleteRecord = async (req, res) => {
     }
 };
 
-export const getProperty = async (req, res) => {
+export const getProperty = async (req, res, next) => {
     try {
         const propertyId = req.params.id;
 

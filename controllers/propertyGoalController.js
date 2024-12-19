@@ -8,7 +8,7 @@ import ApiError from "../utils/ApiError.js";
 // Data
 import dataList from "../data/property_goal.json" assert { type: "json" };
 
-export const listRecords = async (req, res) => {
+export const listRecords = async (req, res, next) => {
     try {
         const PropertyGoal = await PropertyGoalModel.getAll();
         res.status(200).json(createApiResponse("success", PropertyGoal));
@@ -17,7 +17,7 @@ export const listRecords = async (req, res) => {
     }
 };
 
-export const createRecord = async (req, res) => {
+export const createRecord = async (req, res, next) => {
     try {
         const newRecord = await PropertyGoalModel.create(req.validatedData);
         res.status(201).json(
@@ -31,7 +31,7 @@ export const createRecord = async (req, res) => {
     }
 };
 
-export const updateRecord = async (req, res) => {
+export const updateRecord = async (req, res, next) => {
     try {
         const { id } = req.params;
 
@@ -58,7 +58,7 @@ export const updateRecord = async (req, res) => {
     }
 };
 
-export const deleteRecord = async (req, res) => {
+export const deleteRecord = async (req, res, next) => {
     try {
         const { id } = req.params;
 
@@ -83,7 +83,7 @@ export const deleteRecord = async (req, res) => {
     }
 };
 
-export const truncate = async (req, res) => {
+export const truncate = async (req, res, next) => {
     try {
         const truncate = await PropertyGoalModel.truncate();
         res.status(200).json(createApiResponse("success", truncate));
@@ -92,7 +92,7 @@ export const truncate = async (req, res) => {
     }
 };
 
-export const loadData = async (req, res) => {
+export const loadData = async (req, res, next) => {
     try {
         for (const item of dataList) {
             await PropertyGoalModel.create(item);
