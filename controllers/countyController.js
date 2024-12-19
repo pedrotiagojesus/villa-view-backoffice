@@ -1,6 +1,8 @@
 // Models
 import CountyModel from "../models/countyModel.js";
 import DistrictModel from "../models/districtModel.js";
+import PropertyModel from "../models/propertyModel.js";
+import ParishModel from "../models/parishModel.js";
 
 // Utils
 import { createApiResponse } from "../utils/response.js";
@@ -101,6 +103,28 @@ export const deleteRecord = async (req, res, next) => {
             );
         }
 
+        // Is in use?
+        // Property
+        const inUseProperty = await PropertyModel.countByCounty(id);
+        if (inUseProperty > 0) {
+            throw new ApiError(
+                400,
+                `Registo em uso, não pode ser eliminado.`,
+                "RECORD_IN_USE"
+            );
+        }
+
+        // Parish
+        const inUseParish = await ParishModel.countByCounty(id);
+        if (inUseParish > 0) {
+            throw new ApiError(
+                400,
+                `Registo em uso, não pode ser eliminado.`,
+                "RECORD_IN_USE"
+            );
+        }
+
+        // Delete type
         const deleteType = req.header("X-Delete-Type") ?? "soft";
 
         if (deleteType === "soft") {
@@ -108,8 +132,6 @@ export const deleteRecord = async (req, res, next) => {
         } else {
             await CountyModel.hardDelete(id);
         }
-
-        // TODO: Garantir que o primary key desta tabela não está em uso noutras tabelas
 
         await CountyModel.delete(id);
         res.status(200).json(createApiResponse("success"));

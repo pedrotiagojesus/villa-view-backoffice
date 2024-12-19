@@ -21,6 +21,12 @@ export default {
         const row = rows.length > 0 ? rows[0] : null;
         return row;
     },
+    countByDistrict: async (district_id) => {
+        let query = `SELECT COUNT(*) AS count FROM county WHERE district_id = ?`;
+        let data = [district_id];
+        const [result] = await db.query(query, data);
+        return result[0].count;
+    },
     create: async ({ district_id, name }) => {
         const [result] = await db.query(
             "INSERT INTO `county` (`district_id`, `name`) VALUES (?, ?)",

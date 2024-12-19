@@ -248,6 +248,7 @@ export const deleteRecord = async (req, res, next) => {
             );
         }
 
+        // Delete type
         const deleteType = req.header("X-Delete-Type") ?? "soft";
 
         if (deleteType === "soft") {

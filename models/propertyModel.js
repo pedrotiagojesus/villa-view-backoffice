@@ -1,8 +1,6 @@
 import { db } from "../config/database/mysql.js";
 
-const table = "property";
-
-export default {
+const propertyModel = {
     get: async (id) => {
         const [rows] = await db.query(
             "SELECT * FROM `property` WHERE `property_id` = ? AND is_visible = ? `deleted_at` IS NULL",
@@ -76,6 +74,30 @@ export default {
 
         const [result] = await db.query(query, data);
         return result;
+    },
+    countByPropertyType: async (property_type_id) => {
+        return propertyModel.countBy("property_type_id", property_type_id);
+    },
+    countByPropertyStatus: async (property_status_id) => {
+        return propertyModel.countBy("property_status_id", property_status_id);
+    },
+    countByPropertyGoal: async (property_goal_id) => {
+        return propertyModel.countBy("property_goal_id", property_goal_id);
+    },
+    countByParish: async (parish_id) => {
+        return propertyModel.countBy("parish_id", parish_id);
+    },
+    countByCounty: async (county_id) => {
+        return propertyModel.countBy("county_id", county_id);
+    },
+    countByDistrict: async (district_id) => {
+        return propertyModel.countBy("district_id", district_id);
+    },
+    countBy: async (field, value) => {
+        let query = `SELECT COUNT(*) AS count FROM property WHERE ${field} = ?`;
+        let data = [value];
+        const [result] = await db.query(query, data);
+        return result[0].count;
     },
     create: async ({
         reference,
@@ -257,3 +279,5 @@ export default {
         return result;
     },
 };
+
+export default propertyModel;
