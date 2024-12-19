@@ -3,6 +3,7 @@ import PropertyTypeModel from "../models/propertyTypeModel.js";
 
 // Utils
 import { createApiResponse } from "../utils/response.js";
+import ApiError from "../utils/ApiError.js";
 
 // Data
 import dataList from "../data/property_type.json" assert { type: "json" };

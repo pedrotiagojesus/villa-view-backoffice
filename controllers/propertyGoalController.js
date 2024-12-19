@@ -3,6 +3,7 @@ import PropertyGoalModel from "../models/propertyGoalModel.js";
 
 // Utils
 import { createApiResponse } from "../utils/response.js";
+import ApiError from "../utils/ApiError.js";
 
 // Data
 import dataList from "../data/property_goal.json" assert { type: "json" };

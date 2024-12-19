@@ -5,6 +5,7 @@ import CountyModel from "../models/countyModel.js";
 
 // Utils
 import { createApiResponse } from "../utils/response.js";
+import ApiError from "../utils/ApiError.js";
 
 // Data
 import dataList from "../data/parish.json" assert { type: "json" };

@@ -4,6 +4,7 @@ import DistrictModel from "../models/districtModel.js";
 
 // Utils
 import { createApiResponse } from "../utils/response.js";
+import ApiError from "../utils/ApiError.js";
 
 // Data
 import dataList from "../data/county.json" assert { type: "json" };
