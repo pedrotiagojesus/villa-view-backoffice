@@ -2,12 +2,12 @@ import { db } from "../config/database/mysql.js";
 
 export default {
     getAll: async () => {
-        const [result] = await db.query("SELECT * FROM `property_status`");
+        const [result] = await db.query("SELECT * FROM `property_status` WHERE `deleted_at` IS NULL");
         return result;
     },
     get: async (id) => {
         const [rows] = await db.query(
-            "SELECT * FROM `property_status` WHERE `property_status_id` = ?",
+            "SELECT * FROM `property_status` WHERE `property_status_id` = ? AND `deleted_at` IS NULL",
             [id]
         );
         const row = rows.length > 0 ? rows[0] : null;
@@ -27,7 +27,19 @@ export default {
         );
         return result;
     },
-    delete: async (id) => {
+    softDelete: async (id) => {
+        const [result] = await db.query(
+            "UPDATE `property_status` SET `deleted_at` = CURRENT_TIMESTAMP WHERE `property_status_id` = ?",
+            [id]
+        );
+        return result;
+    },
+    /**
+     * Deletes a record from the property_status table.
+     * @param {number} id the id of the record to delete
+     * @returns {Promise<Object>} the result of the query
+     */
+    hardDelete: async (id) => {
         const [result] = await db.query(
             "DELETE FROM `property_status` WHERE `property_status_id` = ?",
             [id]
