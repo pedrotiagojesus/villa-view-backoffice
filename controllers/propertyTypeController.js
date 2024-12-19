@@ -81,7 +81,6 @@ export const deleteRecord = async (req, res, next) => {
             await PropertyTypeModel.hardDelete(id);
         }
 
-        // TODO: Arranjar maneira de fazer um soft delete e um hard delete
         // TODO: Garantir que o primary key desta tabela não está em uso noutras tabelas
 
         res.status(200).json(createApiResponse("success"));
