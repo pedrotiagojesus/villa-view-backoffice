@@ -74,7 +74,14 @@ export const deleteRecord = async (req, res, next) => {
             );
         }
 
-        // TODO: Arranjar maneira de fazer um soft delete e um hard delete
+        const deleteType = req.header("X-Delete-Type") ?? "soft";
+
+        if (deleteType === "soft") {
+            await DistrictModel.softDelete(id);
+        } else {
+            await DistrictModel.hardDelete(id);
+        }
+
         // TODO: Garantir que o primary key desta tabela não está em uso noutras tabelas
 
         await DistrictModel.delete(id);
