@@ -2,7 +2,7 @@ import { db } from "../config/database/mysql.js";
 
 export default {
     getAll: async (districtId) => {
-        let query = "SELECT * FROM `county` WHERE 1";
+        let query = "SELECT * FROM `county` WHERE `deleted_at` IS NULL";
         let data = [];
 
         if (districtId) {
@@ -15,7 +15,7 @@ export default {
     },
     get: async (id) => {
         const [rows] = await db.query(
-            "SELECT * FROM `county` WHERE `county_id` = ?",
+            "SELECT * FROM `county` WHERE `county_id` = ? AND `deleted_at` IS NULL",
             [id]
         );
         const row = rows.length > 0 ? rows[0] : null;
@@ -35,7 +35,14 @@ export default {
         );
         return result;
     },
-    delete: async (id) => {
+    softDelete: async (id) => {
+        const [result] = await db.query(
+            "UPDATE `county` SET `deleted_at` = CURRENT_TIMESTAMP WHERE `county_id` = ?",
+            [id]
+        );
+        return result;
+    },
+    hardDelete: async (id) => {
         const [result] = await db.query(
             "DELETE FROM `county` WHERE `county_id` = ?",
             [id]

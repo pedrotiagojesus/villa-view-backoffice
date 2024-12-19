@@ -101,7 +101,14 @@ export const deleteRecord = async (req, res, next) => {
             );
         }
 
-        // TODO: Arranjar maneira de fazer um soft delete e um hard delete
+        const deleteType = req.header("X-Delete-Type") ?? "soft";
+
+        if (deleteType === "soft") {
+            await CountyModel.softDelete(id);
+        } else {
+            await CountyModel.hardDelete(id);
+        }
+
         // TODO: Garantir que o primary key desta tabela não está em uso noutras tabelas
 
         await CountyModel.delete(id);
