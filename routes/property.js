@@ -26,8 +26,16 @@ router.get("/", listRecords);
 router.get("/:id", getRecord);
 router.get("/highlight/", listRecordsHighlight);
 router.get("/search/", listRecordsSearch);
-router.post("/", validate(createPropertySchema), createRecord);
-router.put("/:id", validate(updatePropertySchema), updateRecord);
+router.post(
+    "/",
+    validate(createPropertySchema),
+    createRecord
+);
+router.put(
+    "/:id",
+    validate(updatePropertySchema),
+    updateRecord
+);
 router.delete("/:id", deleteRecord);
 
 // TODO: Criar rota para adicionar imagem de capa
