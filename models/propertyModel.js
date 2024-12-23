@@ -22,7 +22,7 @@ const propertyModel = {
         room
     ) => {
         let query =
-            "SELECT * FROM property WHERE is_visible = ? `deleted_at` IS NULL";
+            "SELECT * FROM property WHERE is_visible = ? AND `deleted_at` IS NULL";
         let data = [true];
 
         if (typeof is_highlight == "boolean") {
@@ -96,6 +96,12 @@ const propertyModel = {
     countBy: async (field, value) => {
         let query = `SELECT COUNT(*) AS count FROM property WHERE ${field} = ?`;
         let data = [value];
+        const [result] = await db.query(query, data);
+        return result[0].count;
+    },
+    preventDuplicate: async (reference, id) => {
+        let query = `SELECT COUNT(*) AS count FROM property WHERE reference = ? AND property_id != ?`;
+        let data = [reference, id];
         const [result] = await db.query(query, data);
         return result[0].count;
     },

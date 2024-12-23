@@ -84,6 +84,7 @@ export const listRecordsSearch = async (req, res, next) => {
 export const createRecord = async (req, res, next) => {
     try {
         const {
+            reference,
             district_id,
             county_id,
             parish_id,
@@ -136,7 +137,13 @@ export const createRecord = async (req, res, next) => {
             );
         }
 
-        // TODO: Garantir que não está a adicionar um registo com o reference duplicado
+        if (PropertyModel.preventDuplicate(reference)) {
+            throw new ApiError(
+                409,
+                `Referência duplicada`,
+                "RECORD_DUPLICATE"
+            );
+        }
 
         const newRecord = await PropertyModel.create(req.validatedData);
         res.status(201).json(
@@ -154,6 +161,7 @@ export const updateRecord = async (req, res, next) => {
     try {
         const { id } = req.params;
         const {
+            reference,
             district_id,
             county_id,
             parish_id,
@@ -219,7 +227,13 @@ export const updateRecord = async (req, res, next) => {
             );
         }
 
-        // TODO: Garantir que não está a editar um registo com o reference duplicado
+        if (preventDuplicate(reference, id)) {
+            throw new ApiError(
+                409,
+                `Referência duplicada`,
+                "RECORD_DUPLICATE"
+            );
+        }
 
         await PropertyModel.update(id, mergedData);
         res.status(201).json(
