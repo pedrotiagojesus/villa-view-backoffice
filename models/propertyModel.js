@@ -99,7 +99,7 @@ const propertyModel = {
         const [result] = await db.query(query, data);
         return result[0].count;
     },
-    preventDuplicate: async (reference, id) => {
+    preventDuplicate: async (reference, id = 0) => {
         let query = `SELECT COUNT(*) AS count FROM property WHERE reference = ? AND property_id != ?`;
         let data = [reference, id];
         const [result] = await db.query(query, data);
