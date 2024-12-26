@@ -9,6 +9,7 @@ import {
     createRecord,
     updateRecord,
     deleteRecord,
+    addCoverImage,
 } from "../controllers/propertyController.js";
 
 // Middleware
@@ -18,6 +19,7 @@ import validate from "../middleware/validate.js";
 import {
     createPropertySchema,
     updatePropertySchema,
+    propertyCoverImageSchema
 } from "../schemas/index.js";
 
 const router = express.Router();
@@ -37,6 +39,13 @@ router.put(
     updateRecord
 );
 router.delete("/:id", deleteRecord);
+
+
+router.post(
+    "/:id/cover-image",
+    validate(propertyCoverImageSchema),
+    addCoverImage
+);
 
 // TODO: Criar rota para adicionar imagem de capa
 

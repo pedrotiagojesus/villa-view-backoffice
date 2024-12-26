@@ -17,7 +17,6 @@ const createPropertySchema = Joi.object({
         .allow(null)
         .default(null),
     contact: Joi.string().allow(null).default(null),
-    cover_image: Joi.string().allow(null).default(null),
     email: Joi.string().allow(null).default(null),
     latitude: Joi.number().precision(6).allow(null).default(null),
     longitude: Joi.number().precision(6).allow(null).default(null),
@@ -27,7 +26,6 @@ const createPropertySchema = Joi.object({
     is_visible: Joi.boolean().default(true),
     is_highlight: Joi.boolean().default(false),
 });
-// Todo: Colocar o cover_image como facultativo
 
 const updatePropertySchema = Joi.object({
     reference: Joi.string().optional(),
@@ -41,7 +39,6 @@ const updatePropertySchema = Joi.object({
     description: Joi.string().allow(null).optional(),
     construction_year: Joi.number().allow(null).optional(),
     contact: Joi.string().allow(null).optional(),
-    cover_image: Joi.string().allow(null).optional(),
     email: Joi.string().email().allow(null).optional(),
     latitude: Joi.number().allow(null).optional(),
     longitude: Joi.number().allow(null).optional(),
@@ -52,4 +49,8 @@ const updatePropertySchema = Joi.object({
     is_highlight: Joi.boolean().optional(),
 });
 
-export { createPropertySchema, updatePropertySchema };
+const propertyCoverImageSchema = Joi.object({
+    cover_image: Joi.string().optional().allow(null),
+});
+
+export { createPropertySchema, updatePropertySchema, propertyCoverImageSchema };

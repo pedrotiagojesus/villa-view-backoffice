@@ -3,7 +3,7 @@ import { db } from "../config/database/mysql.js";
 const propertyModel = {
     get: async (id) => {
         const [rows] = await db.query(
-            "SELECT * FROM `property` WHERE `property_id` = ? AND is_visible = ? `deleted_at` IS NULL",
+            "SELECT * FROM `property` WHERE `property_id` = ? AND is_visible = ? AND `deleted_at` IS NULL",
             [id, true]
         );
         const row = rows.length > 0 ? rows[0] : null;

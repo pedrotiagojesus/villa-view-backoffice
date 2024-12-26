@@ -2,27 +2,32 @@
 import ApiError from "../utils/ApiError.js";
 
 const validate = (schema) => {
-    return (req, res, next) => {
-        // Acessa os campos enviados
-        console.log('Campos do formulário:', req.body);
+    return async (req, res, next) => {
 
-        // Acessa o arquivo enviado
-        console.log('Informações do arquivo:', req.file);
+        console.log("fields:", req.body);
+        console.log("files:", req.files);
+        return;
 
-        const { error, value } = schema.validate(req.body, {
-            abortEarly: false,
-        });
+        try {
+            // Valida os dados do body com o esquema fornecido
+            const { error, value } = schema.validate(req.body, {
+                abortEarly: false,
+            });
 
-        if (error) {
-            throw new ApiError(
-                400,
-                error.details.map((d) => d.message).join(", "),
-                "MISSING_FIELDS"
-            );
+            if (error) {
+                throw new ApiError(
+                    400,
+                    error.details.map((d) => d.message).join(", "),
+                    "MISSING_FIELDS"
+                );
+            }
+
+            // Salva os dados validados para uso futuro
+            req.validatedData = value;
+            next();
+        } catch (validationError) {
+            next(validationError); // Passa o erro para o middleware de erro
         }
-
-        req.validatedData = value;
-        next();
     };
 };
 

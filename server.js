@@ -1,4 +1,5 @@
 import express from "express";
+import bodyParser from "body-parser";
 
 // cors
 import cors from "cors";
@@ -16,12 +17,16 @@ import propertyRoutes from "./routes/property.js";
 
 // middleware
 import errorHandler from "./middleware/errorHandler.js";
+import logMiddleware from "./middleware/log.js";
+import formidableParser from "./middleware/formidableParser.js";
 
 const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.use(cors(corsOptions));
+app.use(formidableParser);
+// app.use(logMiddleware);
 
 // routes
 app.use("/db", dbRoutes);

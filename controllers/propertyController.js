@@ -288,3 +288,32 @@ export const getProperty = async (req, res, next) => {
         next(error);
     }
 };
+
+export const addCoverImage = async() => {
+    try {
+        const { id } = req.params;
+        const {
+            reference,
+            district_id,
+            county_id,
+            parish_id,
+            property_goal_id,
+            property_status_id,
+            property_type_id,
+        } = req.validatedData;
+
+        // Find record
+        const record = await PropertyModel.get(id);
+
+        if (!record) {
+            throw new ApiError(
+                404,
+                `Registo não encontrado.`,
+                "RECORD_NOT_FOUND"
+            );
+        }
+
+    } catch (error) {
+
+    }
+};
